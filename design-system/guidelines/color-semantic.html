@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Verdict colours" subtitle="Research verdicts: verified / caution / flagged" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--surface-card);color:var(--text-body);font-family:var(--font-sans);padding:20px 24px}
+  .lbl{font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)}
+  .row{display:flex;gap:12px}
+  .col{display:flex;flex-direction:column}
+  
+  .sw{display:flex;flex-direction:column;gap:6px;flex:1}
+  .chip{height:56px;border-radius:var(--radius-2);border:1px solid rgba(21,19,14,.08)}
+  .nm{font:var(--type-caption);color:var(--text-heading)}
+  .hex{font:var(--type-label);letter-spacing:.06em;color:var(--text-faint);text-transform:uppercase}
+  .grid{display:flex;gap:10px}
+
+</style></head>
+<body>
+<div class="grid">
+<div class="sw"><div class="chip" style="background:var(--verified-500)"></div><div class="nm">Verified 500</div><div class="hex">#3E6047 · --verified-500</div></div><div class="sw"><div class="chip" style="background:var(--verified-100)"></div><div class="nm">Verified 100</div><div class="hex">#E2EBE3 · --verified-100</div></div><div class="sw"><div class="chip" style="background:var(--caution-500)"></div><div class="nm">Caution 500</div><div class="hex">#8A6516 · --caution-500</div></div><div class="sw"><div class="chip" style="background:var(--caution-100)"></div><div class="nm">Caution 100</div><div class="hex">#F3EADA · --caution-100</div></div><div class="sw"><div class="chip" style="background:var(--flag-500)"></div><div class="nm">Flag 500</div><div class="hex">#8C2F22 · --flag-500</div></div><div class="sw"><div class="chip" style="background:var(--flag-100)"></div><div class="nm">Flag 100</div><div class="hex">#F4E2DF · --flag-100</div></div>
+</div>
+<div class="row" style="margin-top:16px">
+  <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;padding:5px 9px;border-radius:var(--radius-1);background:var(--verified-100);color:var(--verified-500)">Verified on site</span>
+  <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;padding:5px 9px;border-radius:var(--radius-1);background:var(--caution-100);color:var(--caution-500)">Unconfirmed</span>
+  <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;padding:5px 9px;border-radius:var(--radius-1);background:var(--flag-100);color:var(--flag-500)">Title risk</span>
+</div>
+</body></html>

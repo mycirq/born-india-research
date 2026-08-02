@@ -1,0 +1,61 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Content — Card, Badge, Tag, SectionMarker, StatBlock, KeyValueRow, Callout" subtitle="The research-report vocabulary" -->
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--surface-card);color:var(--text-body);font-family:var(--font-sans);padding:22px 24px}
+  .lbl{font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-sans);font-weight:500;font-size:14px;border-radius:var(--radius-1);border:1px solid transparent;padding:11px 20px;cursor:pointer;text-decoration:none}
+  .p{background:var(--action-primary-bg);color:var(--action-primary-fg)}
+  .s{background:transparent;color:var(--ink-900);border-color:var(--line-strong)}
+  .a{background:var(--laterite-500);color:#fffdf8}
+  .q{background:transparent;color:var(--laterite-600);padding:0;border:0;border-bottom:1px solid var(--laterite-200);border-radius:0}
+  .sm{padding:7px 14px;font-size:13px}.lg{padding:14px 26px;font-size:15px}
+  .stack{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .fld{display:flex;flex-direction:column;gap:6px}
+  .fldlbl{font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)}
+  .ctl{font:var(--type-body);color:var(--ink-900);background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-1);padding:11px 12px}
+  .badge{display:inline-block;font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;padding:5px 9px;border-radius:var(--radius-1)}
+  .tag{display:inline-block;font:var(--type-caption);color:var(--text-body);padding:4px 10px;border:1px solid var(--line-strong);border-radius:var(--radius-1)}
+  .card{background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--card-padding)}
+</style><style>body{background:var(--paper)}</style></head><body>
+<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:20px">
+  <span style="font:var(--type-label);letter-spacing:var(--tracking-label);color:var(--laterite-500)">03</span>
+  <span class="lbl" style="color:var(--text-muted)">Micro-market findings</span>
+  <span style="flex:1;border-top:1px solid var(--line-strong)"></span>
+</div>
+<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:18px">
+  <div class="card">
+    <div class="lbl" style="color:var(--laterite-500)">01</div>
+    <div style="font:var(--type-subtitle);color:var(--text-heading);margin-top:12px">We do the groundwork</div>
+    <div style="font:var(--type-small);color:var(--text-muted);margin-top:8px">Cities, micro-markets, the numbers, and the people — the homework most investors never have time to do properly.</div>
+    <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--line);font:var(--type-caption);color:var(--text-faint)">11 site visits · Jul 2026</div>
+  </div>
+  <div class="card" style="background:var(--surface-inverse);border-color:var(--surface-inverse)">
+    <div class="lbl" style="color:var(--laterite-200)">Independent by design</div>
+    <div style="font:var(--type-subtitle);color:var(--text-on-dark);margin-top:12px">We are a research firm, not a broker.</div>
+    <div style="font:var(--type-small);color:var(--text-on-dark-muted);margin-top:8px">No commissions, no bias — just findings you can trust.</div>
+  </div>
+</div>
+<div style="display:flex;gap:34px;margin-top:24px;align-items:flex-start">
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <span class="lbl">Gross yield</span>
+    <span style="font:var(--type-figure);color:var(--text-heading);font-variant-numeric:tabular-nums">3.4<span style="font-size:18px;color:var(--text-muted)">%</span></span>
+    <span style="font:var(--type-caption);color:var(--text-muted)">12 comparables, Jul 2026</span>
+  </div>
+  <div style="flex:1">
+    <div style="display:flex;align-items:baseline;font:var(--type-data);padding:9px 0"><span>Ticket size</span><span style="flex:1;border-bottom:1px dotted var(--ink-100);margin:0 10px;transform:translateY(-4px)"></span><span style="color:var(--text-heading)">₹1.8–2.4 Cr</span></div>
+    <div style="display:flex;align-items:baseline;font:var(--type-data);padding:9px 0"><span>Site visits</span><span style="flex:1;border-bottom:1px dotted var(--ink-100);margin:0 10px;transform:translateY(-4px)"></span><span style="color:var(--text-heading)">11</span></div>
+  </div>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center">
+  <span class="badge" style="background:var(--verified-100);color:var(--verified-500)">Verified on site</span>
+  <span class="badge" style="background:var(--caution-100);color:var(--caution-500)">Unconfirmed</span>
+  <span class="badge" style="background:var(--flag-100);color:var(--flag-500)">Title risk</span>
+  <span class="badge" style="background:var(--laterite-100);color:var(--laterite-600)">Accent</span>
+  <span class="tag">Whitefield</span><span class="tag">Plotted</span><span class="tag">RERA registered</span>
+</div>
+<div style="margin-top:22px;border-left:2px solid var(--laterite-500);padding-left:16px">
+  <div class="lbl" style="color:var(--laterite-500)">Field note</div>
+  <div style="font:var(--type-small);color:var(--text-body);margin-top:6px">Two of the four launches slipped a quarter; we discounted the developer's timeline accordingly.</div>
+</div>
+</body></html>

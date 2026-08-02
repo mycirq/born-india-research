@@ -1,0 +1,31 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Forms — Input, Select, Checkbox" subtitle="Mono uppercase labels above every control" -->
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--surface-card);color:var(--text-body);font-family:var(--font-sans);padding:22px 24px}
+  .lbl{font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-sans);font-weight:500;font-size:14px;border-radius:var(--radius-1);border:1px solid transparent;padding:11px 20px;cursor:pointer;text-decoration:none}
+  .p{background:var(--action-primary-bg);color:var(--action-primary-fg)}
+  .s{background:transparent;color:var(--ink-900);border-color:var(--line-strong)}
+  .a{background:var(--laterite-500);color:#fffdf8}
+  .q{background:transparent;color:var(--laterite-600);padding:0;border:0;border-bottom:1px solid var(--laterite-200);border-radius:0}
+  .sm{padding:7px 14px;font-size:13px}.lg{padding:14px 26px;font-size:15px}
+  .stack{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .fld{display:flex;flex-direction:column;gap:6px}
+  .fldlbl{font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)}
+  .ctl{font:var(--type-body);color:var(--ink-900);background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-1);padding:11px 12px}
+  .badge{display:inline-block;font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;padding:5px 9px;border-radius:var(--radius-1)}
+  .tag{display:inline-block;font:var(--type-caption);color:var(--text-body);padding:4px 10px;border:1px solid var(--line-strong);border-radius:var(--radius-1)}
+  .card{background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--card-padding)}
+</style></head><body>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px">
+  <label class="fld"><span class="fldlbl">Name</span><input class="ctl" value="Aparna R." /></label>
+  <label class="fld"><span class="fldlbl">Budget</span><span class="ctl" style="display:flex;gap:8px;align-items:center;border-color:var(--border-focus);box-shadow:var(--shadow-focus)"><span style="font:var(--type-data);color:var(--text-faint)">₹</span><input style="border:0;outline:0;background:transparent;font:var(--type-body);flex:1" value="2,00,00,000" /></span></label>
+  <label class="fld"><span class="fldlbl">City</span><select class="ctl"><option>Bengaluru</option><option>Pune</option></select></label>
+</div>
+<div style="display:flex;gap:28px;align-items:center;margin-top:22px">
+  <label class="fld" style="flex:1"><span class="fldlbl">Email</span><input class="ctl" style="border-color:var(--flag-500)" value="hello@" /><span style="font:var(--type-caption);color:var(--flag-500)">Enter a full email address.</span></label>
+  <span style="display:inline-flex;gap:10px;align-items:center"><span style="width:17px;height:17px;display:grid;place-items:center;border-radius:var(--radius-1);background:var(--laterite-500);border:1px solid var(--laterite-500)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fffdf8" stroke-width="3.5"><path d="M4 12.5l5.5 5.5L20 6"/></svg></span><span style="font:var(--type-small)">Send me the quarterly note</span></span>
+  <span style="display:inline-flex;gap:10px;align-items:center"><span style="width:17px;height:17px;border-radius:var(--radius-1);background:var(--surface);border:1px solid var(--line-strong)"></span><span style="font:var(--type-small);color:var(--text-muted)">Unchecked</span></span>
+</div>
+</body></html>

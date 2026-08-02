@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Born India Research · Independent real estate investment research</title>
+<meta name="description" content="Born India Research does the groundwork so you can invest in Indian real estate with clarity. Independent research, no commissions, the decision stays yours." />
+<style>
+  /* First-paint fallback: identical values to styles.css, inlined so nothing
+     renders unstyled while the external stylesheet is still in flight. */
+  :root{
+    --paper:#f7f4ec;--paper-sunk:#f0ece0;--surface:#fffdf8;--surface-ink:#15130e;
+    --ink-900:#15130e;--ink-700:#3a362c;--ink-500:#6b6455;--ink-300:#9c9484;--ink-100:#cfc8b8;
+    --line:#e6e0d2;--line-strong:#d6cfbe;
+    --laterite-700:#7f3413;--laterite-600:#8c3915;--laterite-500:#a8461d;--laterite-200:#e6cbbc;--laterite-100:#f3e4db;
+    --indigo-600:#222c4b;--indigo-500:#2c3a63;--indigo-200:#c3c8d8;--indigo-100:#e3e5ee;
+    --verified-500:#3e6047;--verified-100:#e2ebe3;--caution-500:#8a6516;--caution-100:#f3eada;--flag-500:#8c2f22;--flag-100:#f4e2df;
+    --text-heading:var(--ink-900);--text-body:var(--ink-700);--text-muted:var(--ink-500);--text-faint:var(--ink-300);
+    --text-accent:var(--laterite-600);--text-link:var(--indigo-500);--text-on-dark:#f2eee3;--text-on-dark-muted:#a49b89;
+    --surface-page:var(--paper);--surface-card:var(--surface);--surface-sunk:var(--paper-sunk);--surface-accent:var(--laterite-100);--surface-inverse:var(--surface-ink);
+    --border-hairline:var(--line);--border-rule:var(--line-strong);--border-focus:var(--laterite-500);
+    --action-primary-bg:var(--ink-900);--action-primary-bg-hover:var(--laterite-600);--action-primary-fg:#fffdf8;
+    --font-display:"Newsreader",Georgia,"Times New Roman",serif;
+    --font-sans:"Public Sans",-apple-system,"Segoe UI",sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",monospace;
+    --type-display-1:400 clamp(44px,6vw,76px)/1.04 var(--font-display);
+    --type-display-2:400 clamp(32px,4vw,46px)/1.10 var(--font-display);
+    --type-title:500 26px/1.2 var(--font-display);
+    --type-subtitle:400 20px/1.35 var(--font-display);
+    --type-lead:400 19px/1.6 var(--font-sans);
+    --type-body:400 16px/1.65 var(--font-sans);
+    --type-small:400 14px/1.55 var(--font-sans);
+    --type-caption:400 13px/1.45 var(--font-sans);
+    --type-label:500 11px/1.2 var(--font-mono);
+    --type-data:400 15px/1.4 var(--font-mono);
+    --type-figure:400 34px/1.05 var(--font-mono);
+    --tracking-label:0.16em;--tracking-tight:-0.015em;
+    --measure-prose:66ch;--measure-lead:46ch;
+    --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;
+    --space-6:32px;--space-7:48px;--space-8:64px;--space-9:96px;--space-10:128px;
+    --gutter:24px;--page-max:1120px;--measure-max:720px;--section-y:var(--space-9);--card-padding:var(--space-6);
+    --radius-0:0px;--radius-1:2px;--radius-2:4px;--radius-3:8px;
+    --border-width:1px;--rule-width:1px;
+    --shadow-0:none;--shadow-1:0 1px 2px rgba(21,19,14,.05);--shadow-2:0 2px 10px rgba(21,19,14,.07);
+    --shadow-focus:0 0 0 3px rgba(168,70,29,.22);
+    --ease:cubic-bezier(.2,.6,.3,1);--dur-1:120ms;--dur-2:200ms;
+    --transition:color var(--dur-1) var(--ease),background-color var(--dur-1) var(--ease),border-color var(--dur-1) var(--ease);
+  }
+  html,body{background:#f7f4ec}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--text-body);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+  h1,h2,h3{margin:0;font-weight:400}
+  p{margin:0}
+  a{color:var(--text-link);text-decoration:none}
+  a:hover{color:var(--laterite-600)}
+  em{font-style:italic}
+  ::selection{background:var(--laterite-100)}
+
+  /* Responsive: media queries cannot be expressed inline. */
+  @media (max-width:1000px){
+    [data-grid="hero"],[data-grid="two"],[data-grid="founder"],[data-grid="cta"]{grid-template-columns:1fr !important}
+    [data-grid="four"]{grid-template-columns:repeat(2,1fr) !important}
+    [data-grid="hero"]{gap:var(--space-7) !important}
+    [data-grid="founder"] [data-photo]{width:100% !important;max-width:340px;height:300px !important}
+    [data-nav] a[data-navlink]{display:none !important}
+  }
+  @media (max-width:720px){
+    [data-grid="three"],[data-grid="four"]{grid-template-columns:1fr !important}
+    [data-section]{padding-left:18px !important;padding-right:18px !important}
+    [data-section="hero"]{padding-top:var(--space-7) !important}
+    [data-stats]{gap:var(--space-5) !important}
+    [data-cta-inner]{padding:var(--space-6) !important}
+    [data-foot]{padding:40px 18px 36px !important}
+  }
+  @media (max-width:420px){
+    [data-stats]{flex-direction:column;gap:var(--space-4) !important}
+  }
+</style>
+<link rel="stylesheet" href="styles.css" />
+<script src="./image-slot.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+</helmet>
+
+<div style="background:var(--paper);min-height:100vh">
+
+  <header style="position:sticky;top:0;z-index:20;background:rgba(247,244,236,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)">
+    <div style="max-width:var(--page-max);margin:0 auto;padding:0 var(--gutter);height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#top" style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:var(--tracking-tight);color:var(--text-heading)">Born India Research</span>
+        <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)">Est. 2026 · India</span>
+      </a>
+      <nav data-nav style="display:flex;align-items:center;gap:28px">
+        <a data-navlink href="#coverage" style="font:var(--type-small);color:var(--text-body)">Coverage</a>
+        <a data-navlink href="#how" style="font:var(--type-small);color:var(--text-body)">How it works</a>
+        <a data-navlink href="#brief" style="font:var(--type-small);color:var(--text-body)">The brief</a>
+        <a data-navlink href="#founder" style="font:var(--type-small);color:var(--text-body)">Founder</a>
+        <a href="https://www.linkedin.com/in/jyotsnamaheshwari/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;font-family:var(--font-sans);font-weight:500;font-size:13px;padding:8px 16px;border-radius:var(--radius-1);background:var(--ink-900);color:#fffdf8;transition:var(--transition)" style-hover="background:var(--laterite-600);color:#fffdf8">Let's connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="top" data-section="hero" style="max-width:var(--page-max);margin:0 auto;padding:var(--space-9) var(--gutter) var(--space-8)">
+    <div data-grid="hero" style="display:grid;grid-template-columns:1.05fr .95fr;gap:var(--space-8);align-items:center">
+      <div>
+        <span data-reveal="0" style="display:inline-block;font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;padding:5px 9px;border-radius:var(--radius-1);background:var(--laterite-100);color:var(--laterite-600)">Day one · we're just getting started</span>
+        <h1 data-reveal="1" style="font:var(--type-display-1);color:var(--text-heading);letter-spacing:var(--tracking-tight);margin:24px 0 20px;text-wrap:pretty">Invest in Indian property with <em style="color:var(--laterite-600)">clarity</em>, not guesswork.</h1>
+        <p data-reveal="2" style="font:var(--type-lead);color:var(--text-muted);max-width:var(--measure-lead)">You have the capital. You don't have the time to scout cities, chase brokers, and separate signal from sales pitch. We do that groundwork.</p>
+        <div data-reveal="3" style="display:flex;gap:14px;margin-top:32px;align-items:center;flex-wrap:wrap">
+          <a href="https://www.linkedin.com/in/jyotsnamaheshwari/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-sans);font-weight:500;font-size:15px;padding:14px 26px;border-radius:var(--radius-1);background:var(--ink-900);color:#fffdf8;transition:var(--transition)" style-hover="background:var(--laterite-600)"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.24 8.25h4.5V24H.24V8.25Zm7.86 0h4.31v2.15h.06c.6-1.13 2.07-2.32 4.26-2.32 4.56 0 5.4 3 5.4 6.9V24h-4.5v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.16V24H8.1V8.25Z" /></svg>Let's connect</a>
+          <a href="#how" style="display:inline-flex;align-items:center;font-family:var(--font-sans);font-weight:500;font-size:15px;padding:14px 26px;border-radius:var(--radius-1);border:1px solid var(--line-strong);color:var(--ink-900);transition:var(--transition)" style-hover="border-color:var(--ink-900);color:var(--ink-900)">How it works</a>
+        </div>
+        <div data-reveal="4" data-stats style="display:flex;flex-wrap:wrap;gap:var(--space-6);margin-top:var(--space-7);padding-top:var(--space-5);border-top:1px solid var(--line-strong)">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)">Cities under coverage</span>
+            <span data-count="4" data-pad="2" style="font:var(--type-figure);color:var(--text-heading);font-variant-numeric:tabular-nums">00</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)">Commission earned</span>
+            <span style="font:var(--type-figure);color:var(--text-heading);font-variant-numeric:tabular-nums">0</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)">Listings we sell</span>
+            <span style="font:var(--type-figure);color:var(--text-heading);font-variant-numeric:tabular-nums">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--space-4);align-items:center">
+        <div style="position:relative;width:100%;max-width:500px">
+          <canvas ref="{{ globeRef }}" style="width:100%;aspect-ratio:1;display:block"></canvas>
+          <div ref="{{ tipRef }}" style="position:absolute;left:0;top:0;pointer-events:none;opacity:0;transition:opacity 160ms var(--ease);background:var(--surface-inverse);color:var(--text-on-dark);font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;padding:6px 10px;border-radius:var(--radius-1);white-space:nowrap;transform:translate(-50%,-160%);z-index:2"></div>
+          <sc-if value="{{ zoomed }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ onBack }}" style="position:absolute;top:8px;right:8px;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-weight:500;font-size:11px;letter-spacing:var(--tracking-label);text-transform:uppercase;padding:8px 12px;border-radius:var(--radius-1);border:1px solid var(--line-strong);background:var(--surface-card);color:var(--ink-900);cursor:pointer;transition:var(--transition);z-index:3" style-hover="border-color:var(--ink-900)">Back to globe</button>
+          </sc-if>
+        </div>
+        <div style="width:100%;max-width:500px;display:flex;flex-direction:column;gap:10px;padding-top:var(--space-3);border-top:1px solid var(--line)">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="width:7px;height:7px;border-radius:50%;background:var(--laterite-500);flex:0 0 auto"></span>
+            <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">Under coverage</span>
+          </div>
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <span style="font:var(--type-caption);color:var(--text-faint)">Gurgaon · Mumbai · Bengaluru · Dehradun</span>
+            <span style="font:var(--type-caption);color:var(--laterite-600);border-bottom:1px solid var(--laterite-200)">Click India to open the map</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--surface-inverse);padding:var(--space-8) 0;overflow:hidden">
+    <div data-section style="max-width:var(--page-max);margin:0 auto;padding:0 var(--gutter)">
+      <h2 data-reveal="0" style="font:var(--type-display-2);color:var(--text-on-dark);max-width:900px;letter-spacing:var(--tracking-tight);text-wrap:pretty">Real estate in India doesn't have a data problem.<br /><em style="color:#e0b49c">It has a trust problem.</em></h2>
+      <p data-reveal="1" style="font:var(--type-small);color:var(--text-on-dark-muted);margin-top:20px;max-width:560px">Everyone quoting you a number is also selling you something. We are the exception, structurally: no commissions, no listings, no referral fees.</p>
+    </div>
+  </section>
+
+  <section id="coverage" data-section style="max-width:var(--page-max);margin:0 auto;padding:var(--space-8) var(--gutter) 0">
+    <div style="display:flex;align-items:baseline;gap:14px">
+      <span style="font:var(--type-label);letter-spacing:var(--tracking-label);color:var(--laterite-500)">01</span>
+      <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">Where we work</span>
+      <span style="flex:1;border-top:1px solid var(--line-strong)"></span>
+    </div>
+    <div data-grid="four" style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4);margin-top:var(--space-5)">
+      <div data-reveal="0" data-city="Gurgaon" style="background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--space-5);cursor:default;transition:var(--transition)" style-hover="border-color:var(--laterite-500)">
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--laterite-500)">28.46°N 77.03°E</div>
+        <div style="font:var(--type-subtitle);color:var(--text-heading);margin-top:10px">Gurgaon</div>
+        <div style="font:var(--type-caption);color:var(--text-muted);margin-top:6px">NCR, apartments and offices</div>
+      </div>
+      <div data-reveal="1" data-city="Mumbai" style="background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--space-5);cursor:default;transition:var(--transition)" style-hover="border-color:var(--laterite-500)">
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--laterite-500)">19.08°N 72.88°E</div>
+        <div style="font:var(--type-subtitle);color:var(--text-heading);margin-top:10px">Mumbai</div>
+        <div style="font:var(--type-caption);color:var(--text-muted);margin-top:6px">MMR, redevelopment stock</div>
+      </div>
+      <div data-reveal="2" data-city="Bengaluru" style="background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--space-5);cursor:default;transition:var(--transition)" style-hover="border-color:var(--laterite-500)">
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--laterite-500)">12.97°N 77.59°E</div>
+        <div style="font:var(--type-subtitle);color:var(--text-heading);margin-top:10px">Bengaluru</div>
+        <div style="font:var(--type-caption);color:var(--text-muted);margin-top:6px">Plotted land, east corridor</div>
+      </div>
+      <div data-reveal="3" data-city="Dehradun" style="background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--space-5);cursor:default;transition:var(--transition)" style-hover="border-color:var(--laterite-500)">
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--laterite-500)">30.32°N 78.03°E</div>
+        <div style="font:var(--type-subtitle);color:var(--text-heading);margin-top:10px">Dehradun</div>
+        <div style="font:var(--type-caption);color:var(--text-muted);margin-top:6px">Valley belt, second homes</div>
+      </div>
+    </div>
+    <p data-reveal="4" style="font:var(--type-caption);color:var(--text-faint);margin-top:var(--space-4)">Hover a city to find it on the globe, or click India to open the map. We add a city only once we can visit it properly.</p>
+  </section>
+
+  <section id="how" data-section style="max-width:var(--page-max);margin:0 auto;padding:var(--space-8) var(--gutter) 0">
+    <div style="display:flex;align-items:baseline;gap:14px">
+      <span style="font:var(--type-label);letter-spacing:var(--tracking-label);color:var(--laterite-500)">02</span>
+      <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">How it works</span>
+      <span style="flex:1;border-top:1px solid var(--line-strong)"></span>
+    </div>
+    <div data-grid="three" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-top:var(--space-5)">
+      <div data-reveal="0" style="background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--card-padding);transition:var(--transition)" style-hover="border-color:var(--line-strong)">
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);color:var(--laterite-500)">01</div>
+        <div style="font:var(--type-subtitle);color:var(--text-heading);margin-top:12px">We do the groundwork</div>
+        <p style="font:var(--type-small);color:var(--text-muted);margin-top:8px">Cities, micro-markets, the numbers, and the people. It is the homework most investors never have time to do properly.</p>
+        <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--line);font:var(--type-caption);color:var(--text-faint)">Field visits · registry pulls · developer history</div>
+      </div>
+      <div data-reveal="1" style="background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--card-padding);transition:var(--transition)" style-hover="border-color:var(--line-strong)">
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);color:var(--laterite-500)">02</div>
+        <div style="font:var(--type-subtitle);color:var(--text-heading);margin-top:12px">Independent by design</div>
+        <p style="font:var(--type-small);color:var(--text-muted);margin-top:8px">We're a research firm, not a broker. No commissions, no bias, just findings you can actually trust.</p>
+        <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--line);font:var(--type-caption);color:var(--text-faint)">Paid by you · never by a seller</div>
+      </div>
+      <div data-reveal="2" style="background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--card-padding);transition:var(--transition)" style-hover="border-color:var(--line-strong)">
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);color:var(--laterite-500)">03</div>
+        <div style="font:var(--type-subtitle);color:var(--text-heading);margin-top:12px">You make the call</div>
+        <p style="font:var(--type-small);color:var(--text-muted);margin-top:8px">We hand you clarity and options, never pressure. Helping hands, and the decision always stays yours.</p>
+        <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--line);font:var(--type-caption);color:var(--text-faint)">Research, not advice</div>
+      </div>
+    </div>
+    <div data-reveal="3" style="border-left:2px solid var(--laterite-500);padding-left:16px;margin-top:var(--space-6)">
+      <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--laterite-500)">Field note</div>
+      <p style="font:var(--type-small);color:var(--text-body);margin-top:6px;max-width:var(--measure-prose)">Every claim in a brief carries a source and a date. Where we couldn't verify something on the ground, we say so plainly rather than smoothing it over.</p>
+    </div>
+  </section>
+
+  <section id="brief" data-section style="max-width:var(--page-max);margin:0 auto;padding:var(--space-8) var(--gutter) 0">
+    <div style="display:flex;align-items:baseline;gap:14px">
+      <span style="font:var(--type-label);letter-spacing:var(--tracking-label);color:var(--laterite-500)">03</span>
+      <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">What a brief contains</span>
+      <span style="flex:1;border-top:1px solid var(--line-strong)"></span>
+    </div>
+    <div data-grid="two" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8);margin-top:var(--space-5)">
+      <div data-reveal="0">
+        <div style="display:flex;align-items:baseline;font:var(--type-data);color:var(--text-body);padding:9px 0;border-bottom:1px solid var(--line)"><span>Micro-markets assessed</span><span style="flex:1;border-bottom:1px dotted var(--ink-100);margin:0 10px;transform:translateY(-4px)"></span><span style="color:var(--text-heading)">6 to 8</span></div>
+        <div style="display:flex;align-items:baseline;font:var(--type-data);color:var(--text-body);padding:9px 0;border-bottom:1px solid var(--line)"><span>Comparable transactions</span><span style="flex:1;border-bottom:1px dotted var(--ink-100);margin:0 10px;transform:translateY(-4px)"></span><span style="color:var(--text-heading)">40+</span></div>
+        <div style="display:flex;align-items:baseline;font:var(--type-data);color:var(--text-body);padding:9px 0;border-bottom:1px solid var(--line)"><span>Site visits per shortlist</span><span style="flex:1;border-bottom:1px dotted var(--ink-100);margin:0 10px;transform:translateY(-4px)"></span><span style="color:var(--text-heading)">10 to 12</span></div>
+        <div style="display:flex;align-items:baseline;font:var(--type-data);color:var(--text-body);padding:9px 0;border-bottom:1px solid var(--line)"><span>Turnaround</span><span style="flex:1;border-bottom:1px dotted var(--ink-100);margin:0 10px;transform:translateY(-4px)"></span><span style="color:var(--text-heading)">3 weeks</span></div>
+        <div style="display:flex;align-items:baseline;font:var(--type-data);color:var(--text-body);padding:9px 0"><span>Format</span><span style="flex:1;border-bottom:1px dotted var(--ink-100);margin:0 10px;transform:translateY(-4px)"></span><span style="color:var(--text-heading)">PDF + call</span></div>
+      </div>
+      <div data-reveal="1" style="display:flex;flex-direction:column;gap:var(--space-4)">
+        <p style="font:var(--type-body);color:var(--text-body)">A brief is a document you could hand to your lawyer or your accountant. It states what we checked, how we checked it, what we could not confirm, and where the risk sits.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="font:var(--type-caption);color:var(--text-body);padding:4px 10px;border:1px solid var(--line-strong);border-radius:var(--radius-1)">Title &amp; encumbrance</span>
+          <span style="font:var(--type-caption);color:var(--text-body);padding:4px 10px;border:1px solid var(--line-strong);border-radius:var(--radius-1)">RERA status</span>
+          <span style="font:var(--type-caption);color:var(--text-body);padding:4px 10px;border:1px solid var(--line-strong);border-radius:var(--radius-1)">Developer track record</span>
+          <span style="font:var(--type-caption);color:var(--text-body);padding:4px 10px;border:1px solid var(--line-strong);border-radius:var(--radius-1)">Rental comparables</span>
+          <span style="font:var(--type-caption);color:var(--text-body);padding:4px 10px;border:1px solid var(--line-strong);border-radius:var(--radius-1)">Exit liquidity</span>
+          <span style="font:var(--type-caption);color:var(--text-body);padding:4px 10px;border:1px solid var(--line-strong);border-radius:var(--radius-1)">Infrastructure timelines</span>
+        </div>
+        <a href="ui_kits/research_brief/index.html" style="align-self:flex-start;font:var(--type-small);font-weight:500;color:var(--laterite-600);border-bottom:1px solid var(--laterite-200);padding-bottom:2px">See a sample brief</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="founder" data-section style="max-width:var(--page-max);margin:0 auto;padding:var(--space-8) var(--gutter) 0">
+    <div style="display:flex;align-items:baseline;gap:14px">
+      <span style="font:var(--type-label);letter-spacing:var(--tracking-label);color:var(--laterite-500)">04</span>
+      <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)">Who is behind this</span>
+      <span style="flex:1;border-top:1px solid var(--line-strong)"></span>
+    </div>
+    <div data-reveal="0" data-grid="founder" style="display:grid;grid-template-columns:1fr;gap:var(--space-7);margin-top:var(--space-5);align-items:start">
+      <div>
+        <h2 style="font:var(--type-display-2);color:var(--text-heading);letter-spacing:var(--tracking-tight)">Jyotsna Maheshwari</h2>
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--laterite-600);margin-top:10px">Founder</div>
+        <p style="font:var(--type-lead);color:var(--text-muted);max-width:var(--measure-prose);margin-top:20px">Born India Research is a one-person firm today, and that is deliberate. Every brief is researched, walked and written by the person whose name is on it.</p>
+        <p style="font:var(--type-body);color:var(--text-body);max-width:var(--measure-prose);margin-top:16px">If you want to know who is doing your homework, the answer is right here. Not a research desk, not an outsourced analyst pool. Read the profile, then judge for yourself whether we're the right people to help you decide.</p>
+        <div style="display:flex;gap:14px;margin-top:26px;flex-wrap:wrap">
+          <a href="https://www.linkedin.com/in/jyotsnamaheshwari/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-sans);font-weight:500;font-size:15px;padding:14px 26px;border-radius:var(--radius-1);background:var(--ink-900);color:#fffdf8;transition:var(--transition)" style-hover="background:var(--laterite-600)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.24 8.25h4.5V24H.24V8.25Zm7.86 0h4.31v2.15h.06c.6-1.13 2.07-2.32 4.26-2.32 4.56 0 5.4 3 5.4 6.9V24h-4.5v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.16V24H8.1V8.25Z" /></svg>
+            Let's connect
+          </a>
+        </div>
+        <div style="border-left:2px solid var(--line-strong);padding-left:16px;margin-top:var(--space-6)">
+          <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--ink-500)">On the record</div>
+          <p style="font:var(--type-small);color:var(--text-body);margin-top:6px;max-width:var(--measure-prose)">Born India Research Pvt Ltd holds no brokerage licence, no listings and no commission arrangements with developers or sellers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-section style="max-width:var(--page-max);margin:0 auto;padding:var(--space-9) var(--gutter) var(--space-8)">
+    <div data-reveal="0" data-grid="cta" data-cta-inner style="background:var(--surface-inverse);border-radius:var(--radius-3);padding:var(--space-8);display:grid;grid-template-columns:1.2fr .8fr;gap:var(--space-7);align-items:center">
+      <div>
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--laterite-200)">Built for the capital-rich and time-poor</div>
+        <h2 style="font:var(--type-display-2);color:var(--text-on-dark);letter-spacing:var(--tracking-tight);margin-top:16px;text-wrap:pretty">Tell us what you're weighing up.</h2>
+        <p style="font:var(--type-small);color:var(--text-on-dark-muted);margin-top:14px;max-width:460px">Engineers, doctors and founders: people who've earned real wealth and want to invest it well, without spending weekends dealing with a hundred brokers.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+        <a href="https://www.linkedin.com/in/jyotsnamaheshwari/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-sans);font-weight:500;font-size:15px;padding:14px 26px;border-radius:var(--radius-1);background:var(--laterite-500);color:#fffdf8;transition:var(--transition)" style-hover="background:var(--laterite-600)"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.24 8.25h4.5V24H.24V8.25Zm7.86 0h4.31v2.15h.06c.6-1.13 2.07-2.32 4.26-2.32 4.56 0 5.4 3 5.4 6.9V24h-4.5v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.16V24H8.1V8.25Z" /></svg>Let's connect</a>
+        <span style="font:var(--type-caption);color:var(--text-on-dark-muted)">No sales call. A short conversation about what you're trying to decide.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--surface-inverse)">
+    <div data-foot style="max-width:var(--page-max);margin:0 auto;padding:56px var(--gutter) 48px;display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap">
+      <div style="max-width:320px">
+        <div style="font-family:var(--font-display);font-weight:500;font-size:20px;letter-spacing:var(--tracking-tight);color:var(--text-on-dark)">Born India Research</div>
+        <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-on-dark-muted);margin-top:4px">Est. 2026 · India</div>
+        <p style="font:var(--type-caption);color:var(--text-on-dark-muted);margin-top:18px">Born India Research Pvt Ltd · India</p>
+        <a href="mailto:jyotsna@bornindiaresearch.com" style="font:var(--type-small);color:var(--text-on-dark);border-bottom:1px solid rgba(255,253,248,.3);display:inline-block;margin-top:8px">jyotsna@bornindiaresearch.com</a>
+      </div>
+      <div style="display:flex;gap:56px">
+        <div>
+          <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--laterite-200)">Research</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
+            <a href="#coverage" style="font:var(--type-small);color:var(--text-on-dark-muted)">Coverage</a>
+            <a href="#how" style="font:var(--type-small);color:var(--text-on-dark-muted)">How it works</a>
+            <a href="#brief" style="font:var(--type-small);color:var(--text-on-dark-muted)">The brief</a>
+          </div>
+        </div>
+        <div>
+          <div style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--laterite-200)">Firm</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
+            <a href="#founder" style="font:var(--type-small);color:var(--text-on-dark-muted)">Founder</a>
+            <a href="https://www.linkedin.com/in/jyotsnamaheshwari/" target="_blank" rel="noopener" style="font:var(--type-small);color:var(--text-on-dark-muted)">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/jyotsnamaheshwari/" target="_blank" rel="noopener" style="font:var(--type-small);color:var(--text-on-dark-muted)">Let's connect</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,253,248,.12)">
+      <div data-section style="max-width:var(--page-max);margin:0 auto;padding:18px var(--gutter);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <span style="font:var(--type-caption);color:var(--text-on-dark-muted)">We're early. Building slowly, honestly, the right way.</span>
+        <span style="font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:rgba(164,155,137,.7)">Research, not advice · No commissions</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;spinSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2.5,&quot;min&quot;:0,&quot;max&quot;:2.5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Globe&quot;,&quot;label&quot;:&quot;Idle drift speed&quot;},&quot;globeStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;solid&quot;,&quot;options&quot;:[&quot;solid&quot;,&quot;outline&quot;],&quot;tsType&quot;:&quot;'solid' | 'outline'&quot;,&quot;section&quot;:&quot;Globe&quot;,&quot;label&quot;:&quot;Landmass rendering&quot;},&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;,&quot;label&quot;:&quot;Disable scroll reveals&quot;}}">
+const CITIES = [
+  { name: 'Gurgaon', lon: 77.03, lat: 28.46, dx: -14, dy: -12, anchor: 'right' },
+  { name: 'Mumbai', lon: 72.88, lat: 19.08, dx: -14, dy: 4, anchor: 'right' },
+  { name: 'Bengaluru', lon: 77.59, lat: 12.97, dx: 14, dy: 10, anchor: 'left' },
+  { name: 'Dehradun', lon: 78.03, lat: 30.32, dx: 14, dy: -10, anchor: 'left' },
+];
+const INDIA_ID = '356';
+const FOCUS = [-80, -14];
+const START = [-140, -30];
+
+const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+const easeInOut = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const lerp = (a, b, t) => a + (b - a) * t;
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { zoomed: false };
+    this.globeRef = React.createRef();
+    this.tipRef = React.createRef();
+    this.rot = START.slice();
+    this.hoverCity = null;
+    this.zoom = 0;
+    this.target = 0;
+    this.t0 = null;
+  }
+
+  renderVals() {
+    return {
+      globeRef: this.globeRef,
+      tipRef: this.tipRef,
+      zoomed: this.state.zoomed,
+      onBack: () => this.setZoom(false),
+    };
+  }
+
+  componentDidMount() {
+    this.mounted = true;
+    this.setupReveals();
+    this.setupCityHovers();
+    this.waitForLibs();
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+    cancelAnimationFrame(this.raf);
+    if (this.io) this.io.disconnect();
+    if (this.ro) this.ro.disconnect();
+  }
+
+  setZoom(on) {
+    this.target = on ? 1 : 0;
+    if (this.state.zoomed !== on) this.setState({ zoomed: on });
+  }
+
+  /* ── entrance reveals + counters ─────────────────────────── */
+  setupReveals() {
+    const reduce = this.props.reduceMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const nodes = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (reduce) return;
+    nodes.forEach(n => {
+      n.style.opacity = '0';
+      n.style.transform = 'translateY(14px)';
+      n.style.transition = 'opacity 620ms cubic-bezier(.2,.6,.3,1), transform 620ms cubic-bezier(.2,.6,.3,1)';
+      n.style.transitionDelay = (Number(n.getAttribute('data-reveal')) || 0) * 90 + 'ms';
+    });
+    this.io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        e.target.querySelectorAll('[data-count]').forEach(c => this.countUp(c));
+        this.io.unobserve(e.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    nodes.forEach(n => this.io.observe(n));
+  }
+
+  countUp(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    const to = Number(el.getAttribute('data-count')) || 0;
+    const pad = Number(el.getAttribute('data-pad')) || 0;
+    const start = performance.now();
+    const step = now => {
+      const t = Math.min(1, (now - start) / 900);
+      const v = Math.round(easeOutCubic(t) * to);
+      el.textContent = pad ? String(v).padStart(pad, '0') : String(v);
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  setupCityHovers() {
+    document.querySelectorAll('[data-city]').forEach(el => {
+      el.addEventListener('mouseenter', () => { this.hoverCity = el.getAttribute('data-city'); });
+      el.addEventListener('mouseleave', () => { this.hoverCity = null; });
+    });
+  }
+
+  /* ── globe ───────────────────────────────────────────────── */
+  waitForLibs(tries = 0) {
+    if (!this.mounted) return;
+    if (window.d3 && window.topojson) return this.initGlobe();
+    if (tries > 120) return;
+    setTimeout(() => this.waitForLibs(tries + 1), 100);
+  }
+
+  async initGlobe() {
+    const canvas = this.globeRef.current;
+    if (!canvas) return;
+    this.ctx = canvas.getContext('2d');
+    this.projection = d3.geoOrthographic().rotate(this.rot).precision(0.4);
+    this.path = d3.geoPath(this.projection, this.ctx);
+    this.graticule = d3.geoGraticule10();
+    this.resize();
+    this.ro = new ResizeObserver(() => { this.resize(); });
+    this.ro.observe(canvas);
+    canvas.addEventListener('click', e => this.onClick(e));
+    canvas.addEventListener('mousemove', e => this.onMove(e));
+    canvas.addEventListener('mouseleave', () => { this.pointerCity = null; });
+    this.loop();
+    try {
+      const topo = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(r => r.json());
+      const fc = topojson.feature(topo, topo.objects.countries);
+      this.land = { type: 'FeatureCollection', features: fc.features.filter(f => String(f.id) !== INDIA_ID) };
+      this.india = fc.features.find(f => String(f.id) === INDIA_ID) || null;
+      this.borders = topojson.mesh(topo, topo.objects.countries, (a, b) => a !== b);
+      if (this.india) {
+        const c = d3.geoCentroid(this.india);
+        this.focusRot = [-c[0], -c[1]];
+        const probe = d3.geoOrthographic().rotate(this.focusRot).translate([0, 0]).scale(1).precision(0.4);
+        const b = d3.geoPath(probe).bounds(this.india);
+        this.indiaK = 0.74 / Math.max(b[1][0] - b[0][0], b[1][1] - b[0][1]);
+      }
+    } catch (err) {
+      this.land = null;
+    }
+  }
+
+  resize() {
+    const canvas = this.globeRef.current;
+    if (!canvas || !this.ctx) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth || 480;
+    canvas.width = w * dpr;
+    canvas.height = w * dpr;
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this.size = w;
+    this.baseScale = w / 2 - 12;
+    this.projection.translate([w / 2, w / 2]);
+  }
+
+  local(e) {
+    const r = this.globeRef.current.getBoundingClientRect();
+    return [e.clientX - r.left, e.clientY - r.top];
+  }
+
+  onClick(e) {
+    if (!this.india || !this.projection) return;
+    const p = this.local(e);
+    const geo = this.projection.invert(p);
+    const inside = geo && d3.geoContains(this.india, geo);
+    if (inside && this.target === 0) this.setZoom(true);
+    else if (!inside && this.target === 1) this.setZoom(false);
+  }
+
+  onMove(e) {
+    const canvas = this.globeRef.current;
+    if (!canvas || !this.projection) return;
+    const p = this.local(e);
+    let near = null;
+    CITIES.forEach(c => {
+      const q = this.projection([c.lon, c.lat]);
+      if (!q) return;
+      if (Math.hypot(q[0] - p[0], q[1] - p[1]) < 12) near = c.name;
+    });
+    this.pointerCity = near;
+    const geo = this.projection.invert(p);
+    const overIndia = geo && this.india && d3.geoContains(this.india, geo);
+    canvas.style.cursor = near || overIndia ? 'pointer' : 'default';
+  }
+
+  loop() {
+    const tick = now => {
+      if (!this.mounted) return;
+      if (this.t0 === null) this.t0 = now;
+      const el = (now - this.t0) / 1000;
+      const intro = Math.min(1, el / 2.4);
+      const e = easeOutCubic(intro);
+      const speed = this.props.spinSpeed == null ? 1 : this.props.spinSpeed;
+      const drift = intro >= 1 ? Math.sin((el - 2.4) * 0.18) * 11 * speed : 0;
+
+      this.zoom += (this.target - this.zoom) * 0.075;
+      if (Math.abs(this.target - this.zoom) < 0.001) this.zoom = this.target;
+      const z = easeInOut(Math.max(0, Math.min(1, this.zoom)));
+
+      const globeRot = [
+        START[0] + (FOCUS[0] - START[0]) * e + drift * (1 - z),
+        START[1] + (FOCUS[1] - START[1]) * e,
+      ];
+      const fr = this.focusRot || FOCUS;
+      this.rot = [lerp(globeRot[0], fr[0], z), lerp(globeRot[1], fr[1], z)];
+      const target = this.indiaK ? this.size * this.indiaK : this.baseScale;
+      this.projection.rotate(this.rot).scale(lerp(this.baseScale, target, z));
+
+      this.draw(el, z);
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+
+  css(name, fallback) {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback;
+  }
+
+  draw(el, z) {
+    const ctx = this.ctx, s = this.size;
+    if (!ctx) return;
+    const C = {
+      sphere: this.css('--paper-sunk', '#f0ece0'),
+      grat: this.css('--line-strong', '#d6cfbe'),
+      land: this.css('--ink-100', '#cfc8b8'),
+      india: this.css('--laterite-500', '#a8461d'),
+      indiaSoft: this.css('--laterite-100', '#f3e4db'),
+      ink: this.css('--ink-900', '#15130e'),
+      muted: this.css('--ink-500', '#6b6455'),
+      paper: this.css('--paper', '#f7f4ec'),
+    };
+    ctx.clearRect(0, 0, s, s);
+
+    ctx.save();
+    ctx.beginPath(); ctx.arc(s / 2, s / 2, s / 2 - 1, 0, Math.PI * 2); ctx.clip();
+
+    ctx.beginPath(); this.path({ type: 'Sphere' });
+    ctx.fillStyle = C.sphere; ctx.fill();
+
+    ctx.beginPath(); this.path(this.graticule);
+    ctx.strokeStyle = C.grat; ctx.globalAlpha = 0.5 * (1 - z * 0.6); ctx.lineWidth = 0.5; ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    if (this.land) {
+      const outline = (this.props.globeStyle || 'solid') === 'outline';
+      ctx.beginPath(); this.path(this.land);
+      if (outline) { ctx.strokeStyle = C.land; ctx.lineWidth = 0.7; ctx.stroke(); }
+      else { ctx.fillStyle = C.land; ctx.globalAlpha = 1 - z * 0.45; ctx.fill(); ctx.globalAlpha = 1; }
+
+      ctx.beginPath(); this.path(this.borders);
+      ctx.strokeStyle = C.grat; ctx.lineWidth = 0.5; ctx.globalAlpha = 0.8; ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      if (this.india) {
+        ctx.beginPath(); this.path(this.india);
+        ctx.fillStyle = C.india; ctx.globalAlpha = 1 - z; ctx.fill();
+        ctx.fillStyle = C.indiaSoft; ctx.globalAlpha = z; ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = C.india; ctx.lineWidth = 1.4 + z * 0.8; ctx.lineJoin = 'round'; ctx.stroke();
+      }
+    }
+    ctx.restore();
+
+    ctx.beginPath(); ctx.arc(s / 2, s / 2, s / 2 - 1, 0, Math.PI * 2);
+    ctx.strokeStyle = C.ink; ctx.globalAlpha = 0.28 * (1 - z * 0.7); ctx.lineWidth = 1; ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    this.drawCities(ctx, C, el, z);
+  }
+
+  drawCities(ctx, C, el, z) {
+    const center = [-this.rot[0], -this.rot[1]];
+    const active = this.pointerCity || this.hoverCity;
+    let tip = null;
+    CITIES.forEach((c, i) => {
+      if (d3.geoDistance([c.lon, c.lat], center) > Math.PI / 2) return;
+      const p = this.projection([c.lon, c.lat]);
+      if (!p) return;
+      const on = active === c.name;
+      const phase = (el * 0.55 + i * 0.25) % 1;
+      const r = 2.6 + phase * (on ? 15 : 9);
+      ctx.beginPath(); ctx.arc(p[0], p[1], r, 0, Math.PI * 2);
+      ctx.strokeStyle = C.india; ctx.globalAlpha = (1 - phase) * (on ? 0.6 : 0.32);
+      ctx.lineWidth = 1; ctx.stroke(); ctx.globalAlpha = 1;
+
+      ctx.beginPath(); ctx.arc(p[0], p[1], on ? 4.5 : 3, 0, Math.PI * 2);
+      ctx.fillStyle = on ? C.ink : C.india; ctx.fill();
+      ctx.strokeStyle = C.paper; ctx.lineWidth = 1.2; ctx.stroke();
+
+      if (z > 0.35) {
+        ctx.globalAlpha = Math.min(1, (z - 0.35) / 0.4);
+        const right = c.anchor === 'left';
+        const lx = p[0] + (right ? 9 : -9);
+        ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(lx, p[1] + c.dy * 0.5);
+        ctx.strokeStyle = C.muted; ctx.lineWidth = 0.8; ctx.stroke();
+        ctx.font = '500 11px "JetBrains Mono", ui-monospace, monospace';
+        ctx.textAlign = right ? 'left' : 'right';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = on ? C.ink : C.muted;
+        ctx.fillText(c.name.toUpperCase(), p[0] + c.dx, p[1] + c.dy * 0.5);
+        ctx.globalAlpha = 1;
+        ctx.textAlign = 'start';
+      }
+      if (on) tip = { p, name: c.name };
+    });
+
+    const tipEl = this.tipRef.current;
+    if (!tipEl) return;
+    if (tip && z < 0.35) {
+      const box = this.globeRef.current.getBoundingClientRect();
+      const host = tipEl.parentNode.getBoundingClientRect();
+      tipEl.textContent = tip.name;
+      tipEl.style.left = (box.left - host.left + tip.p[0]) + 'px';
+      tipEl.style.top = (box.top - host.top + tip.p[1]) + 'px';
+      tipEl.style.opacity = '1';
+    } else {
+      tipEl.style.opacity = '0';
+    }
+  }
+}
+</script>
+</body>
+</html>

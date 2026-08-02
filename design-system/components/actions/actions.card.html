@@ -1,0 +1,37 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Actions — Button, IconButton" subtitle="Primary / secondary / accent / quiet · three sizes · icon button" -->
+<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--surface-card);color:var(--text-body);font-family:var(--font-sans);padding:22px 24px}
+  .lbl{font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-sans);font-weight:500;font-size:14px;border-radius:var(--radius-1);border:1px solid transparent;padding:11px 20px;cursor:pointer;text-decoration:none}
+  .p{background:var(--action-primary-bg);color:var(--action-primary-fg)}
+  .s{background:transparent;color:var(--ink-900);border-color:var(--line-strong)}
+  .a{background:var(--laterite-500);color:#fffdf8}
+  .q{background:transparent;color:var(--laterite-600);padding:0;border:0;border-bottom:1px solid var(--laterite-200);border-radius:0}
+  .sm{padding:7px 14px;font-size:13px}.lg{padding:14px 26px;font-size:15px}
+  .stack{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .fld{display:flex;flex-direction:column;gap:6px}
+  .fldlbl{font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-muted)}
+  .ctl{font:var(--type-body);color:var(--ink-900);background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-1);padding:11px 12px}
+  .badge{display:inline-block;font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;padding:5px 9px;border-radius:var(--radius-1)}
+  .tag{display:inline-block;font:var(--type-caption);color:var(--text-body);padding:4px 10px;border:1px solid var(--line-strong);border-radius:var(--radius-1)}
+  .card{background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);padding:var(--card-padding)}
+</style></head><body>
+<div class="stack">
+  <button class="btn p">Get in touch</button>
+  <button class="btn s">How it works</button>
+  <button class="btn a">Request a brief</button>
+  <button class="btn q">Read the methodology</button>
+</div>
+<div class="stack" style="margin-top:18px">
+  <button class="btn p sm">Small</button>
+  <button class="btn p">Medium</button>
+  <button class="btn p lg">Large</button>
+  <button class="btn p" style="opacity:.4">Disabled</button>
+  <button aria-label="Download" style="width:36px;height:36px;display:inline-grid;place-items:center;background:transparent;border:1px solid var(--line);border-radius:var(--radius-1);cursor:pointer">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3a362c" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg>
+  </button>
+</div>
+<p style="margin-top:18px;font:var(--type-caption);color:var(--text-muted)">Hover: primary → laterite fill · secondary → ink border. No lift, no scale, no pill radii.</p>
+</body></html>

@@ -1,0 +1,61 @@
+:root{
+  /* ── Base: warm paper & ink ─────────────────────────────── */
+  --paper:        #f7f4ec;   /* page ground */
+  --paper-sunk:   #f0ece0;   /* recessed bands, table zebra */
+  --surface:      #fffdf8;   /* cards, sheets */
+  --surface-ink:  #15130e;   /* inverted surfaces */
+
+  --ink-900:      #15130e;   /* headlines */
+  --ink-700:      #3a362c;   /* body */
+  --ink-500:      #6b6455;   /* secondary text */
+  --ink-300:      #9c9484;   /* captions, disabled */
+  --ink-100:      #cfc8b8;
+
+  --line:         #e6e0d2;   /* hairlines, card borders */
+  --line-strong:  #d6cfbe;   /* section rules */
+
+  /* ── Accent: laterite (Indian soil red-ochre) ───────────── */
+  --laterite-700: #7f3413;
+  --laterite-600: #8c3915;
+  --laterite-500: #a8461d;   /* primary accent */
+  --laterite-200: #e6cbbc;
+  --laterite-100: #f3e4db;   /* accent wash */
+
+  /* ── Support: indigo (dye) — data, links, quiet authority ── */
+  --indigo-600:   #222c4b;
+  --indigo-500:   #2c3a63;
+  --indigo-200:   #c3c8d8;
+  --indigo-100:   #e3e5ee;
+
+  /* ── Semantic (research verdicts) ───────────────────────── */
+  --verified-500: #3e6047;   /* checked, positive finding */
+  --verified-100: #e2ebe3;
+  --caution-500:  #8a6516;   /* unverified, watch */
+  --caution-100:  #f3eada;
+  --flag-500:     #8c2f22;   /* risk, red flag */
+  --flag-100:     #f4e2df;
+
+  /* ── Semantic aliases ───────────────────────────────────── */
+  --text-heading:      var(--ink-900);
+  --text-body:         var(--ink-700);
+  --text-muted:        var(--ink-500);
+  --text-faint:        var(--ink-300);
+  --text-accent:       var(--laterite-600);
+  --text-link:         var(--indigo-500);
+  --text-on-dark:      #f2eee3;
+  --text-on-dark-muted:#a49b89;
+
+  --surface-page:      var(--paper);
+  --surface-card:      var(--surface);
+  --surface-sunk:      var(--paper-sunk);
+  --surface-accent:    var(--laterite-100);
+  --surface-inverse:   var(--surface-ink);
+
+  --border-hairline:   var(--line);
+  --border-rule:       var(--line-strong);
+  --border-focus:      var(--laterite-500);
+
+  --action-primary-bg:       var(--ink-900);
+  --action-primary-bg-hover: var(--laterite-600);
+  --action-primary-fg:       #fffdf8;
+}

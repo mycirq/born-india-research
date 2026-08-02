@@ -1,0 +1,16 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Elevation" subtitle="Paper doesn't float — borders first, shadow only for overlays" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--surface-card);color:var(--text-body);font-family:var(--font-sans);padding:20px 24px}
+  .lbl{font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)}
+  .row{display:flex;gap:12px}
+  .col{display:flex;flex-direction:column}
+  body{background:var(--paper)}
+</style></head>
+<body>
+<div class="row" style="gap:20px">
+<div style="flex:1"><div style="height:64px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-2);box-shadow:var(--shadow-0)"></div><div class="lbl" style="margin-top:8px">--shadow-0 · flat + border</div></div><div style="flex:1"><div style="height:64px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-2);box-shadow:var(--shadow-1)"></div><div class="lbl" style="margin-top:8px">--shadow-1 · raised card</div></div><div style="flex:1"><div style="height:64px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-2);box-shadow:var(--shadow-2)"></div><div class="lbl" style="margin-top:8px">--shadow-2 · overlay / menu</div></div>
+</div>
+</body></html>

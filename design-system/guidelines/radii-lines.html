@@ -1,0 +1,20 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Radii & rules" subtitle="Near-square corners; hairlines do the structural work" -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--surface-card);color:var(--text-body);font-family:var(--font-sans);padding:20px 24px}
+  .lbl{font:var(--type-label);letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--text-faint)}
+  .row{display:flex;gap:12px}
+  .col{display:flex;flex-direction:column}
+  
+</style></head>
+<body>
+<div class="row" style="align-items:flex-end;gap:20px">
+<div style="text-align:center"><div style="width:72px;height:52px;background:var(--paper-sunk);border:1px solid var(--line-strong);border-radius:var(--radius-0)"></div><div class="lbl" style="margin-top:8px">0px</div></div><div style="text-align:center"><div style="width:72px;height:52px;background:var(--paper-sunk);border:1px solid var(--line-strong);border-radius:var(--radius-1)"></div><div class="lbl" style="margin-top:8px">2px</div></div><div style="text-align:center"><div style="width:72px;height:52px;background:var(--paper-sunk);border:1px solid var(--line-strong);border-radius:var(--radius-2)"></div><div class="lbl" style="margin-top:8px">4px</div></div><div style="text-align:center"><div style="width:72px;height:52px;background:var(--paper-sunk);border:1px solid var(--line-strong);border-radius:var(--radius-3)"></div><div class="lbl" style="margin-top:8px">8px</div></div>
+  <div style="flex:1">
+    <div style="border-top:1px solid var(--line)"></div><div class="lbl" style="margin:6px 0 14px">--line · hairline</div>
+    <div style="border-top:1px solid var(--line-strong)"></div><div class="lbl" style="margin-top:6px">--line-strong · section rule</div>
+  </div>
+</div>
+</body></html>
