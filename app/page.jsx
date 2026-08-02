@@ -236,7 +236,7 @@ export default function Page() {
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 20, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-on-dark)' }}>Born India Research</div>
             <div style={{ ...label, color: 'var(--text-on-dark-muted)', marginTop: 4 }}>Est. 2026 · India</div>
             <p style={{ font: 'var(--type-caption)', color: 'var(--text-on-dark-muted)', marginTop: 18 }}>Born India Research Pvt Ltd · India</p>
-            <a href="mailto:hello@mybornindiaresearch.com" style={{ font: 'var(--type-small)', color: 'var(--text-on-dark)', borderBottom: '1px solid rgba(255,253,248,.3)', display: 'inline-block', marginTop: 8 }}>hello@mybornindiaresearch.com</a>
+            <a href="mailto:jyotsna@bornindiaresearch.com" style={{ font: 'var(--type-small)', color: 'var(--text-on-dark)', borderBottom: '1px solid rgba(255,253,248,.3)', display: 'inline-block', marginTop: 8 }}>jyotsna@bornindiaresearch.com</a>
           </div>
           <div style={{ display: 'flex', gap: 56 }}>
             <div>
