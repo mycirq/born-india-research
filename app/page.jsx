@@ -1,80 +1,91 @@
 'use client';
 
-import { useEffect } from 'react';
-import Globe from './Globe';
+import { useState } from 'react';
+import GroundworkGlobe from './GroundworkGlobe';
+import { CITIES, TONES, getCity } from './data/cities';
 
 const LI = 'https://www.linkedin.com/in/jyotsnamaheshwari/';
+
+const label = {
+  font: 'var(--type-label)',
+  letterSpacing: 'var(--tracking-label)',
+  textTransform: 'uppercase',
+};
+
 const LinkedInIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.24 8.25h4.5V24H.24V8.25Zm7.86 0h4.31v2.15h.06c.6-1.13 2.07-2.32 4.26-2.32 4.56 0 5.4 3 5.4 6.9V24h-4.5v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.16V24H8.1V8.25Z" />
   </svg>
 );
-const rd = (i) => ({ transitionDelay: `${i * 90}ms` });
 
-export default function Page() {
-  useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const nodes = Array.from(document.querySelectorAll('.reveal'));
-    if (reduce) { nodes.forEach((n) => n.classList.add('in')); return; }
-    const countUp = (el) => {
-      if (el.dataset.counted) return;
-      el.dataset.counted = '1';
-      const to = Number(el.getAttribute('data-count')) || 0;
-      const pad = Number(el.getAttribute('data-pad')) || 0;
-      const start = performance.now();
-      const step = (now) => {
-        const t = Math.min(1, (now - start) / 900);
-        const v = Math.round((1 - Math.pow(1 - t, 3)) * to);
-        el.textContent = pad ? String(v).padStart(pad, '0') : String(v);
-        if (t < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
-        e.target.querySelectorAll('[data-count]').forEach(countUp);
-        io.unobserve(e.target);
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-    nodes.forEach((n) => io.observe(n));
-    return () => io.disconnect();
-  }, []);
+const Mark = () => (
+  <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="32" cy="32" r="31" fill="#a8461d" />
+    <g stroke="#f7f4ec" fill="none" strokeWidth="1.4" opacity=".62">
+      <ellipse cx="32" cy="32" rx="12.5" ry="31" />
+      <line x1="1" y1="32" x2="63" y2="32" />
+    </g>
+    <circle cx="41.5" cy="24" r="4.6" fill="#f7f4ec" />
+  </svg>
+);
 
-  const label = { font: 'var(--type-label)', letterSpacing: 'var(--tracking-label)', textTransform: 'uppercase' };
-  const figure = { font: 'var(--type-figure)', color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums' };
-
-  const Stat = ({ children, count, pad }) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-      <span style={{ ...label, color: 'var(--text-faint)' }}>{children}</span>
-      {count != null
-        ? <span data-count={count} data-pad={pad} style={figure}>{pad ? '00' : '0'}</span>
-        : <span style={figure}>0</span>}
-    </div>
-  );
-
-  const SecHead = ({ n, children }) => (
+function SecHead({ n, children }) {
+  return (
     <div className="sec-head">
       <span style={{ font: 'var(--type-label)', letterSpacing: 'var(--tracking-label)', color: 'var(--laterite-500)' }}>{n}</span>
       <span style={{ ...label, color: 'var(--text-muted)' }}>{children}</span>
       <span className="rule" />
     </div>
   );
+}
+
+const METRIC_FAMILIES = [
+  ['01', 'Price and movement', 'Median ₹/sqft, 1, 3 and 5-year change, asking-to-registered spread, and the gap between a project and its own corridor.'],
+  ['02', 'Income', 'Gross and net yield after maintenance and tax, price-to-rent, lease comparables, and what a realistic vacancy month does to the return.'],
+  ['03', 'Supply', 'New launches, unsold inventory, months of overhang, and completions due in the next eight quarters within a 3 km radius.'],
+  ['04', 'Demand and liquidity', 'Quarterly absorption, absorption against launches, resale velocity, and days on market. This is the number that tells you whether you can get out.'],
+  ['05', 'Risk and governance', 'RERA standing, title and encumbrance, developer delivery history, delay rate on their last five projects, and live litigation.'],
+  ['06', 'Infrastructure', 'Metro and road timelines with their slippage history, employment nodes within a commute, and what the corridor looks like if nothing gets built.'],
+];
+
+const METHOD = [
+  ['01', 'Records first', 'Sub-registrar comparables and the RERA portal, pulled ourselves. A number reproduced by a reseller is not evidence.', 'Primary sources only'],
+  ['02', 'Then the street', 'Site visits at two different hours, a footfall count where it matters, and conversations with people who already own there.', '10 to 12 visits per shortlist'],
+  ['03', 'Conflicts stay visible', 'When two sources disagree we show you both rather than averaging them into a clean number that isn’t true.', 'The decision stays yours'],
+];
+
+const METHOD_ROWS = [
+  ['Micro-markets assessed', '6 to 8'],
+  ['Comparable transactions', '40+'],
+  ['Turnaround', '3 weeks'],
+  ['Format', 'PDF + call'],
+];
+
+export default function Page() {
+  const [selected, setSelected] = useState('gurgaon');
+  const [level, setLevel] = useState(0);
+  const city = getCity(selected);
+
+  const pick = (id) => { setSelected(id); setLevel(2); };
+  const goBack = () => setLevel(level === 2 ? 1 : 0);
+  const stage = level === 2 ? city.name.toUpperCase() : level === 1 ? 'INDIA' : 'LOCATING INDIA';
 
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
       {/* Header */}
-      <header style={{ position: 'sticky', top: 0, zIndex: 20, background: 'rgba(247,244,236,.88)', backdropFilter: 'blur(8px)', borderBottom: '1px solid var(--line)' }}>
-        <div className="wrap" style={{ height: 76, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
-          <a href="#top" style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 20, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-heading)' }}>Born India Research</span>
-            <span style={{ ...label, color: 'var(--text-faint)' }}>Est. 2026 · India</span>
+      <header style={{ position: 'sticky', top: 0, zIndex: 30, background: 'rgba(247,244,236,.9)', backdropFilter: 'blur(8px)', borderBottom: '1px solid var(--line)' }}>
+        <div className="wrap" style={{ height: 76, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
+          <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
+            <Mark />
+            <span style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 19, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-heading)' }}>Groundwork</span>
+              <span style={{ ...label, color: 'var(--text-muted)' }}>By Born India Research</span>
+            </span>
           </a>
-          <nav style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-            <a className="nav-links" href="#coverage" style={{ font: 'var(--type-small)', color: 'var(--text-body)' }}>Coverage</a>
-            <a className="nav-links" href="#how" style={{ font: 'var(--type-small)', color: 'var(--text-body)' }}>How it works</a>
-            <a className="nav-links" href="#brief" style={{ font: 'var(--type-small)', color: 'var(--text-body)' }}>The brief</a>
+          <nav style={{ display: 'flex', alignItems: 'center', gap: 26 }}>
+            <a className="nav-links" href="#cities" style={{ font: 'var(--type-small)', color: 'var(--text-body)' }}>Cities</a>
+            <a className="nav-links" href="#metrics" style={{ font: 'var(--type-small)', color: 'var(--text-body)' }}>What we track</a>
+            <a className="nav-links" href="#method" style={{ font: 'var(--type-small)', color: 'var(--text-body)' }}>Method</a>
             <a className="nav-links" href="#founder" style={{ font: 'var(--type-small)', color: 'var(--text-body)' }}>Founder</a>
             <a className="btn btn-primary btn-sm" href={LI} target="_blank" rel="noopener">Let&apos;s connect</a>
           </nav>
@@ -82,145 +93,274 @@ export default function Page() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="wrap" style={{ padding: 'var(--space-9) var(--gutter) var(--space-8)' }}>
-        <div className="g-hero" style={{ display: 'grid', gridTemplateColumns: '1.05fr .95fr', gap: 'var(--space-8)', alignItems: 'center' }}>
+      <section id="top" className="wrap" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-7)' }}>
+        <div className="g-hero" style={{ display: 'grid', gridTemplateColumns: '1fr 1.02fr', gap: 'var(--space-8)', alignItems: 'center' }}>
           <div>
-            <span className="reveal in" style={{ ...rd(0), display: 'inline-block', ...label, padding: '5px 9px', borderRadius: 'var(--radius-1)', background: 'var(--laterite-100)', color: 'var(--laterite-600)' }}>Day one · we&apos;re just getting started</span>
-            <h1 className="reveal" style={{ ...rd(1), font: 'var(--type-display-1)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-tight)', margin: '24px 0 20px', textWrap: 'pretty' }}>Invest in Indian property with <em style={{ color: 'var(--laterite-600)' }}>clarity</em>, not guesswork.</h1>
-            <p className="reveal" style={{ ...rd(2), font: 'var(--type-lead)', color: 'var(--text-muted)', maxWidth: 'var(--measure-lead)' }}>You have the capital. You don&apos;t have the time to scout cities, chase brokers, and separate signal from sales pitch. We do that groundwork.</p>
-            <div className="reveal" style={{ ...rd(3), display: 'flex', gap: 14, marginTop: 32, alignItems: 'center', flexWrap: 'wrap' }}>
-              <a className="btn btn-primary" href={LI} target="_blank" rel="noopener"><LinkedInIcon />Let&apos;s connect</a>
-              <a className="btn btn-secondary" href="#how">How it works</a>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, ...label, padding: '5px 10px', borderRadius: 'var(--radius-1)', background: 'var(--laterite-100)', color: 'var(--laterite-600)' }}>
+              Introducing Groundwork
+            </span>
+            <h1 style={{ font: 'var(--type-display-1)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-tight)', margin: '22px 0 18px', textWrap: 'pretty' }}>
+              City research for Indian property, built one street at a time.
+            </h1>
+            <p style={{ font: 'var(--type-lead)', color: 'var(--text-muted)', maxWidth: 'var(--measure-lead)' }}>
+              Groundwork is the research product from Born India Research. Six metric families per city, every figure sourced and dated, and the gaps marked as gaps.
+            </p>
+            <div style={{ display: 'flex', gap: 14, marginTop: 28, flexWrap: 'wrap' }}>
+              <a className="btn btn-primary" href="#cities">Open the city research</a>
+              <a className="btn btn-secondary" href={LI} target="_blank" rel="noopener"><LinkedInIcon />Let&apos;s connect</a>
             </div>
-            <div className="reveal stats" style={{ ...rd(4), display: 'flex', flexWrap: 'wrap', gap: 'var(--space-6)', marginTop: 'var(--space-7)', paddingTop: 'var(--space-5)', borderTop: '1px solid var(--line-strong)' }}>
-              <Stat count={4} pad={2}>Cities under coverage</Stat>
-              <Stat>Commission earned</Stat>
-              <Stat>Listings we sell</Stat>
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', alignItems: 'center' }}>
-            <Globe />
-            <div style={{ width: '100%', maxWidth: 500, display: 'flex', flexDirection: 'column', gap: 10, paddingTop: 'var(--space-3)', borderTop: '1px solid var(--line)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--laterite-500)', flex: '0 0 auto' }} />
-                <span style={{ ...label, color: 'var(--text-muted)' }}>Under coverage</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-                <span style={{ font: 'var(--type-caption)', color: 'var(--text-faint)' }}>Gurgaon · Mumbai · Bengaluru · Dehradun</span>
-                <span style={{ font: 'var(--type-caption)', color: 'var(--laterite-600)', borderBottom: '1px solid var(--laterite-200)' }}>Click India to open the map</span>
-              </div>
+            <div className="stats" style={{ display: 'flex', gap: 'var(--space-6)', marginTop: 'var(--space-7)', paddingTop: 'var(--space-5)', borderTop: '1px solid var(--line-strong)', flexWrap: 'wrap' }}>
+              {[['Cities live', '04'], ['Metric families', '06'], ['Commission earned', '0']].map(([k, v]) => (
+                <div key={k} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <span style={{ ...label, color: 'var(--text-faint)' }}>{k}</span>
+                  <span style={{ font: 'var(--type-figure)', color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums' }}>{v}</span>
+                </div>
+              ))}
             </div>
           </div>
+
+          {/* Globe. The chips sit in normal flow beneath the canvas rather than
+              absolutely at the wrapper's bottom edge, which made them collide
+              with the sphere once the canvas filled the column. */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-4)', minHeight: 560 }}>
+            <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <GroundworkGlobe selected={selected} level={level} onPick={pick} onLevel={setLevel} />
+
+              <div style={{ position: 'absolute', top: 0, left: 0, display: 'flex', alignItems: 'center', gap: 10, pointerEvents: 'none' }}>
+                <span style={{ ...label, color: 'var(--text-muted)' }}>{stage}</span>
+              </div>
+
+              {level > 0 && (
+                <button onClick={goBack} className="chip" style={{ position: 'absolute', top: 0, right: 0, zIndex: 3 }}>
+                  {level === 2 ? 'Back to India' : 'Back to globe'}
+                </button>
+              )}
+            </div>
+
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+              {CITIES.map((c) => {
+                const on = c.id === selected && level === 2;
+                return (
+                  <button
+                    key={c.id}
+                    onClick={() => pick(c.id)}
+                    className="chip"
+                    style={{ background: on ? 'var(--ink-900)' : 'var(--surface-card)', color: on ? '#fffdf8' : 'var(--ink-900)', borderColor: on ? 'var(--ink-900)' : 'var(--line-strong)' }}
+                  >
+                    {c.name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 01 City research */}
+      <section id="cities" className="wrap" style={{ paddingTop: 'var(--space-8)' }}>
+        <SecHead n="01">City research</SecHead>
+
+        <div className="g-four" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,minmax(0,1fr))', gap: 'var(--space-4)', marginTop: 'var(--space-5)' }}>
+          {CITIES.map((c) => {
+            const on = c.id === selected;
+            const live = c.stage === 'Live';
+            return (
+              <a
+                key={c.id}
+                href={`/cities/${c.id}/`}
+                onMouseEnter={() => pick(c.id)}
+                className="card card-city"
+                style={{
+                  textAlign: 'left', textDecoration: 'none',
+                  background: on ? 'var(--paper-sunk)' : 'var(--surface-card)',
+                  borderColor: on ? 'var(--laterite-500)' : 'var(--line)',
+                  display: 'flex', flexDirection: 'column', gap: 10,
+                }}
+              >
+                <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
+                  <span style={{ ...label, color: 'var(--laterite-500)' }}>{c.coords}</span>
+                  <span style={{ ...label, padding: '4px 8px', borderRadius: 'var(--radius-1)', background: live ? 'var(--verified-100)' : 'var(--caution-100)', color: live ? 'var(--verified-500)' : 'var(--caution-500)' }}>
+                    {c.stage}
+                  </span>
+                </span>
+                <span style={{ font: 'var(--type-subtitle)', color: 'var(--text-heading)' }}>{c.name}</span>
+                <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 22, color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums' }}>{c.rate}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: c.up ? 'var(--verified-500)' : 'var(--flag-500)' }}>{c.move}</span>
+                </span>
+                <span style={{ font: 'var(--type-caption)', color: 'var(--text-muted)' }}>{c.focus}</span>
+                <span style={{ ...label, color: 'var(--laterite-600)', marginTop: 2 }}>Open city research →</span>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Detail panel */}
+        <div style={{ border: '1px solid var(--line-strong)', borderRadius: 'var(--radius-2)', background: 'var(--surface-card)', padding: 'var(--card-padding)', marginTop: 'var(--space-5)' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap', paddingBottom: 'var(--space-4)', borderBottom: '1px solid var(--line-strong)' }}>
+            <div>
+              <div style={{ ...label, color: 'var(--laterite-500)' }}>{city.kicker}</div>
+              <div style={{ font: 'var(--type-title)', color: 'var(--text-heading)', marginTop: 8 }}>{city.name}</div>
+              <div style={{ font: 'var(--type-caption)', color: 'var(--text-muted)', marginTop: 6, maxWidth: 'var(--measure-prose)' }}>{city.summary}</div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-end' }}>
+              <span style={{ ...label, padding: '5px 9px', borderRadius: 'var(--radius-1)', background: 'var(--caution-100)', color: 'var(--caution-500)' }}>Illustrative desk figures</span>
+              <span style={{ font: 'var(--type-caption)', color: 'var(--text-faint)' }}>{city.asOf}</span>
+              <a className="btn btn-primary" href={`/cities/${city.id}/`} style={{ padding: '10px 18px', fontSize: 14, whiteSpace: 'nowrap' }}>
+                Open the full {city.name} page →
+              </a>
+            </div>
+          </div>
+
+          <div className="g-stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,minmax(0,1fr))', gap: 'var(--space-5)', padding: 'var(--space-5) 0', borderBottom: '1px solid var(--line)' }}>
+            {city.headline.map((h) => (
+              <div key={h.label} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <span style={{ ...label, color: 'var(--text-faint)' }}>{h.label}</span>
+                <span style={{ font: 'var(--type-figure)', color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums' }}>{h.value}</span>
+                <span style={{ font: 'var(--type-caption)', color: 'var(--text-muted)' }}>{h.note}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="g-two" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-7)', paddingTop: 'var(--space-5)' }}>
+            <div>
+              <div style={{ ...label, color: 'var(--text-faint)', marginBottom: 10 }}>The metric sheet</div>
+              {city.rows.map((r) => (
+                <div key={r.k} style={{ display: 'flex', alignItems: 'baseline', gap: 4, font: 'var(--type-data)', fontSize: 14, color: 'var(--text-body)', padding: '9px 0', borderBottom: '1px solid var(--line)' }}>
+                  <span style={{ whiteSpace: 'nowrap' }}>{r.k}</span>
+                  <span style={{ flex: '1 1 12px', minWidth: 12, borderBottom: '1px dotted var(--ink-100)', margin: '0 6px', transform: 'translateY(-4px)' }} />
+                  <span style={{ color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums', textAlign: 'right' }}>{r.v}</span>
+                </div>
+              ))}
+            </div>
+            <div>
+              <div style={{ ...label, color: 'var(--text-faint)', marginBottom: 10 }}>Micro-markets in scope</div>
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 280 }}>
+                  <tbody>
+                    {city.micro.map((m) => (
+                      <tr key={m.name} style={{ borderBottom: '1px solid var(--line)' }}>
+                        <td style={{ font: 'var(--type-small)', color: 'var(--text-heading)', padding: '10px 8px 10px 0' }}>{m.name}</td>
+                        <td style={{ font: 'var(--type-data)', fontSize: 13, color: 'var(--text-body)', padding: '10px 8px', textAlign: 'right', whiteSpace: 'nowrap' }}>{m.rate}</td>
+                        <td style={{ padding: '8px 0 8px 8px', textAlign: 'right', width: 1, whiteSpace: 'nowrap' }}>
+                          <span style={{ display: 'inline-block', ...label, padding: '5px 9px', borderRadius: 'var(--radius-1)', background: TONES[m.tone][0], color: TONES[m.tone][1] }}>{m.verdict}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div style={{ borderLeft: '2px solid var(--laterite-500)', paddingLeft: 16, marginTop: 'var(--space-5)' }}>
+                <div style={{ ...label, color: 'var(--laterite-500)' }}>Field note</div>
+                <p style={{ font: 'var(--type-small)', color: 'var(--text-body)', marginTop: 6 }}>{city.note}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p style={{ font: 'var(--type-caption)', color: 'var(--text-muted)', marginTop: 'var(--space-4)', maxWidth: 'var(--measure-prose)' }}>
+          The figures above are illustrative desk estimates, not registered transaction evidence. A live Groundwork city sheet carries a source and a date on every line.
+        </p>
+      </section>
+
+      {/* 02 What we track */}
+      <section id="metrics" className="wrap" style={{ paddingTop: 'var(--space-8)' }}>
+        <SecHead n="02">What we track</SecHead>
+        <p style={{ font: 'var(--type-lead)', color: 'var(--text-muted)', maxWidth: 'var(--measure-prose)', marginTop: 'var(--space-5)' }}>
+          Six families, the same six in every city, so two cities can actually be compared. Price tells you what happened; supply and demand tell you what happens next.
+        </p>
+        <div className="g-six" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'var(--space-4)', marginTop: 'var(--space-5)' }}>
+          {METRIC_FAMILIES.map(([n, t, body]) => (
+            <div key={n} className="card card-how">
+              <div style={{ font: 'var(--type-label)', letterSpacing: 'var(--tracking-label)', color: 'var(--laterite-500)' }}>{n}</div>
+              <div style={{ font: 'var(--type-subtitle)', color: 'var(--text-heading)', marginTop: 12 }}>{t}</div>
+              <p style={{ font: 'var(--type-small)', color: 'var(--text-muted)', marginTop: 8 }}>{body}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Trust band */}
-      <section style={{ background: 'var(--surface-inverse)', padding: 'var(--space-8) 0', overflow: 'hidden' }}>
+      <section style={{ background: 'var(--surface-inverse)', padding: 'var(--space-8) 0', marginTop: 'var(--space-8)' }}>
         <div className="wrap">
-          <h2 className="reveal" style={{ font: 'var(--type-display-2)', color: 'var(--text-on-dark)', maxWidth: 900, letterSpacing: 'var(--tracking-tight)', textWrap: 'pretty' }}>Real estate in India doesn&apos;t have a data problem.<br /><em style={{ color: '#e0b49c' }}>It has a trust problem.</em></h2>
-          <p className="reveal" style={{ ...rd(1), font: 'var(--type-small)', color: 'var(--text-on-dark-muted)', marginTop: 20, maxWidth: 560 }}>Everyone quoting you a number is also selling you something. We are the exception, structurally: no commissions, no listings, no referral fees.</p>
+          <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-on-dark)', maxWidth: 900, letterSpacing: 'var(--tracking-tight)', textWrap: 'pretty' }}>
+            Real estate in India doesn&apos;t have a data problem.<br /><em style={{ color: '#e0b49c' }}>It has a trust problem.</em>
+          </h2>
+          <p style={{ font: 'var(--type-small)', color: 'var(--text-on-dark-muted)', marginTop: 20, maxWidth: 560 }}>
+            Everyone quoting you a number is also selling you something. Groundwork exists because we are the exception, structurally: no commissions, no listings, no referral fees.
+          </p>
         </div>
       </section>
 
-      {/* Coverage */}
-      <section id="coverage" className="wrap" style={{ padding: 'var(--space-8) var(--gutter) 0' }}>
-        <SecHead n="01">Where we work</SecHead>
-        <div className="g-four" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 'var(--space-4)', marginTop: 'var(--space-5)' }}>
-          {[
-            ['Gurgaon', '28.46°N 77.03°E', 'NCR, apartments and offices'],
-            ['Mumbai', '19.08°N 72.88°E', 'MMR, redevelopment stock'],
-            ['Bengaluru', '12.97°N 77.59°E', 'Plotted land, east corridor'],
-            ['Dehradun', '30.32°N 78.03°E', 'Valley belt, second homes'],
-          ].map(([name, coord, note], i) => (
-            <div key={name} className="card card-city reveal" data-city={name} style={rd(i)}>
-              <div style={{ ...label, color: 'var(--laterite-500)' }}>{coord}</div>
-              <div style={{ font: 'var(--type-subtitle)', color: 'var(--text-heading)', marginTop: 10 }}>{name}</div>
-              <div style={{ font: 'var(--type-caption)', color: 'var(--text-muted)', marginTop: 6 }}>{note}</div>
-            </div>
-          ))}
-        </div>
-        <p className="reveal" style={{ ...rd(4), font: 'var(--type-caption)', color: 'var(--text-faint)', marginTop: 'var(--space-4)' }}>Hover a city to find it on the globe, or click India to open the map. We add a city only once we can visit it properly.</p>
-      </section>
-
-      {/* How it works */}
-      <section id="how" className="wrap" style={{ padding: 'var(--space-8) var(--gutter) 0' }}>
-        <SecHead n="02">How it works</SecHead>
-        <div className="g-three" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 'var(--space-4)', marginTop: 'var(--space-5)' }}>
-          {[
-            ['01', 'We do the groundwork', 'Cities, micro-markets, the numbers, and the people. It is the homework most investors never have time to do properly.', 'Field visits · registry pulls · developer history'],
-            ['02', 'Independent by design', "We're a research firm, not a broker. No commissions, no bias, just findings you can actually trust.", 'Paid by you · never by a seller'],
-            ['03', 'You make the call', 'We hand you clarity and options, never pressure. Helping hands, and the decision always stays yours.', 'Research, not advice'],
-          ].map(([n, t, body, foot], i) => (
-            <div key={n} className="card card-how reveal" style={rd(i)}>
-              <div style={{ ...label, color: 'var(--laterite-500)' }}>{n}</div>
+      {/* 03 Method */}
+      <section id="method" className="wrap" style={{ paddingTop: 'var(--space-8)' }}>
+        <SecHead n="03">How Groundwork is made</SecHead>
+        <div className="g-three" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 'var(--space-4)', marginTop: 'var(--space-5)' }}>
+          {METHOD.map(([n, t, body, foot]) => (
+            <div key={n} className="card card-how">
+              <div style={{ font: 'var(--type-label)', letterSpacing: 'var(--tracking-label)', color: 'var(--laterite-500)' }}>{n}</div>
               <div style={{ font: 'var(--type-subtitle)', color: 'var(--text-heading)', marginTop: 12 }}>{t}</div>
               <p style={{ font: 'var(--type-small)', color: 'var(--text-muted)', marginTop: 8 }}>{body}</p>
               <div style={{ marginTop: 20, paddingTop: 14, borderTop: '1px solid var(--line)', font: 'var(--type-caption)', color: 'var(--text-faint)' }}>{foot}</div>
             </div>
           ))}
         </div>
-        <div className="reveal" style={{ ...rd(3), borderLeft: '2px solid var(--laterite-500)', paddingLeft: 16, marginTop: 'var(--space-6)' }}>
-          <div style={{ ...label, color: 'var(--laterite-500)' }}>Field note</div>
-          <p style={{ font: 'var(--type-small)', color: 'var(--text-body)', marginTop: 6, maxWidth: 'var(--measure-prose)' }}>Every claim in a brief carries a source and a date. Where we couldn&apos;t verify something on the ground, we say so plainly rather than smoothing it over.</p>
-        </div>
-      </section>
-
-      {/* Brief */}
-      <section id="brief" className="wrap" style={{ padding: 'var(--space-8) var(--gutter) 0' }}>
-        <SecHead n="03">What a brief contains</SecHead>
-        <div className="g-two" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)', marginTop: 'var(--space-5)' }}>
-          <div className="reveal">
-            {[
-              ['Micro-markets assessed', '6 to 8'],
-              ['Comparable transactions', '40+'],
-              ['Site visits per shortlist', '10 to 12'],
-              ['Turnaround', '3 weeks'],
-              ['Format', 'PDF + call'],
-            ].map(([k, v], i, arr) => (
-              <div key={k} style={{ display: 'flex', alignItems: 'baseline', font: 'var(--type-data)', color: 'var(--text-body)', padding: '9px 0', borderBottom: i < arr.length - 1 ? '1px solid var(--line)' : 'none' }}>
-                <span>{k}</span>
-                <span style={{ flex: 1, borderBottom: '1px dotted var(--ink-100)', margin: '0 10px', transform: 'translateY(-4px)' }} />
+        <div className="g-two" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-7)', marginTop: 'var(--space-6)' }}>
+          <div>
+            {METHOD_ROWS.map(([k, v], i) => (
+              <div key={k} style={{ display: 'flex', alignItems: 'baseline', gap: 4, font: 'var(--type-data)', fontSize: 14, padding: '9px 0', borderBottom: i < METHOD_ROWS.length - 1 ? '1px solid var(--line)' : 'none' }}>
+                <span style={{ whiteSpace: 'nowrap' }}>{k}</span>
+                <span style={{ flex: '1 1 12px', minWidth: 12, borderBottom: '1px dotted var(--ink-100)', margin: '0 6px', transform: 'translateY(-4px)' }} />
                 <span style={{ color: 'var(--text-heading)' }}>{v}</span>
               </div>
             ))}
           </div>
-          <div className="reveal" style={{ ...rd(1), display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-            <p style={{ font: 'var(--type-body)', color: 'var(--text-body)' }}>A brief is a document you could hand to your lawyer or your accountant. It states what we checked, how we checked it, what we could not confirm, and where the risk sits.</p>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              {['Title & encumbrance', 'RERA status', 'Developer track record', 'Rental comparables', 'Exit liquidity', 'Infrastructure timelines'].map((t) => (
-                <span key={t} className="tag">{t}</span>
-              ))}
-            </div>
-            <a className="btn-secondary" href="/brief/" style={{ alignSelf: 'flex-start', font: 'var(--type-small)', fontWeight: 500, color: 'var(--laterite-600)', border: 0, borderBottom: '1px solid var(--laterite-200)', padding: '0 0 2px', borderRadius: 0 }}>See a sample brief</a>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+            <p style={{ font: 'var(--type-body)', color: 'var(--text-body)' }}>
+              A Groundwork sheet is a document you could hand to your lawyer or your accountant. It states what we checked, how we checked it, what we could not confirm, and where the risk sits.
+            </p>
+            <a href="/brief/" style={{ alignSelf: 'flex-start', font: 'var(--type-small)', fontWeight: 500, color: 'var(--laterite-600)', borderBottom: '1px solid var(--laterite-200)', paddingBottom: 2, textDecoration: 'none' }}>
+              Read a real desk brief
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Founder */}
-      <section id="founder" className="wrap" style={{ padding: 'var(--space-8) var(--gutter) 0' }}>
+      {/* 04 Founder */}
+      <section id="founder" className="wrap" style={{ paddingTop: 'var(--space-8)' }}>
         <SecHead n="04">Who is behind this</SecHead>
-        <div className="reveal" style={{ marginTop: 'var(--space-5)' }}>
+        <div style={{ marginTop: 'var(--space-5)' }}>
           <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-tight)' }}>Jyotsna Maheshwari</h2>
-          <div style={{ ...label, color: 'var(--laterite-600)', marginTop: 10 }}>Founder</div>
-          <p style={{ font: 'var(--type-lead)', color: 'var(--text-muted)', maxWidth: 'var(--measure-prose)', marginTop: 20 }}>Born India Research is a one-person firm today, and that is deliberate. Every brief is researched, walked and written by the person whose name is on it.</p>
-          <p style={{ font: 'var(--type-body)', color: 'var(--text-body)', maxWidth: 'var(--measure-prose)', marginTop: 16 }}>If you want to know who is doing your homework, the answer is right here. Not a research desk, not an outsourced analyst pool. Read the profile, then judge for yourself whether we&apos;re the right people to help you decide.</p>
+          <div style={{ ...label, color: 'var(--laterite-600)', marginTop: 10 }}>Founder, Born India Research</div>
+          <p style={{ font: 'var(--type-lead)', color: 'var(--text-muted)', maxWidth: 'var(--measure-prose)', marginTop: 20 }}>
+            Groundwork is a one-person product today, and that is deliberate. Every sheet is researched, walked and written by the person whose name is on it.
+          </p>
+          <p style={{ font: 'var(--type-body)', color: 'var(--text-body)', maxWidth: 'var(--measure-prose)', marginTop: 16 }}>
+            If you want to know who is doing your homework, the answer is right here. Not a research desk, not an outsourced analyst pool.
+          </p>
           <div style={{ display: 'flex', gap: 14, marginTop: 26, flexWrap: 'wrap' }}>
             <a className="btn btn-primary" href={LI} target="_blank" rel="noopener"><LinkedInIcon />Let&apos;s connect</a>
           </div>
           <div style={{ borderLeft: '2px solid var(--line-strong)', paddingLeft: 16, marginTop: 'var(--space-6)' }}>
             <div style={{ ...label, color: 'var(--ink-500)' }}>On the record</div>
-            <p style={{ font: 'var(--type-small)', color: 'var(--text-body)', marginTop: 6, maxWidth: 'var(--measure-prose)' }}>Born India Research Pvt Ltd holds no brokerage licence, no listings and no commission arrangements with developers or sellers.</p>
+            <p style={{ font: 'var(--type-small)', color: 'var(--text-body)', marginTop: 6, maxWidth: 'var(--measure-prose)' }}>
+              Born India Research Pvt Ltd holds no brokerage licence, no listings and no commission arrangements with developers or sellers.
+            </p>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="wrap" style={{ padding: 'var(--space-9) var(--gutter) var(--space-8)' }}>
-        <div className="reveal g-cta cta-inner" style={{ background: 'var(--surface-inverse)', borderRadius: 'var(--radius-3)', padding: 'var(--space-8)', display: 'grid', gridTemplateColumns: '1.2fr .8fr', gap: 'var(--space-7)', alignItems: 'center' }}>
+      <section className="wrap" style={{ paddingTop: 'var(--space-9)', paddingBottom: 'var(--space-8)' }}>
+        <div className="g-cta cta-inner" style={{ background: 'var(--surface-inverse)', borderRadius: 'var(--radius-3)', padding: 'var(--space-8)', display: 'grid', gridTemplateColumns: '1.2fr .8fr', gap: 'var(--space-7)', alignItems: 'center' }}>
           <div>
             <div style={{ ...label, color: 'var(--laterite-200)' }}>Built for the capital-rich and time-poor</div>
-            <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-on-dark)', letterSpacing: 'var(--tracking-tight)', marginTop: 16, textWrap: 'pretty' }}>Tell us what you&apos;re weighing up.</h2>
-            <p style={{ font: 'var(--type-small)', color: 'var(--text-on-dark-muted)', marginTop: 14, maxWidth: 460 }}>Engineers, doctors and founders: people who&apos;ve earned real wealth and want to invest it well, without spending weekends dealing with a hundred brokers.</p>
+            <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-on-dark)', letterSpacing: 'var(--tracking-tight)', marginTop: 16, textWrap: 'pretty' }}>
+              Tell us which city you&apos;re weighing up.
+            </h2>
+            <p style={{ font: 'var(--type-small)', color: 'var(--text-on-dark-muted)', marginTop: 14, maxWidth: 460 }}>
+              Engineers, doctors and founders: people who&apos;ve earned real wealth and want to invest it well, without spending weekends dealing with a hundred brokers.
+            </p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
             <a className="btn btn-accent" href={LI} target="_blank" rel="noopener"><LinkedInIcon />Let&apos;s connect</a>
@@ -231,28 +371,26 @@ export default function Page() {
 
       {/* Footer */}
       <footer style={{ background: 'var(--surface-inverse)' }}>
-        <div className="wrap" style={{ padding: '56px var(--gutter) 48px', display: 'flex', justifyContent: 'space-between', gap: 40, flexWrap: 'wrap' }}>
-          <div style={{ maxWidth: 320 }}>
-            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 20, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-on-dark)' }}>Born India Research</div>
-            <div style={{ ...label, color: 'var(--text-on-dark-muted)', marginTop: 4 }}>Est. 2026 · India</div>
-            <p style={{ font: 'var(--type-caption)', color: 'var(--text-on-dark-muted)', marginTop: 18 }}>Born India Research Pvt Ltd · India</p>
-            <a href="mailto:jyotsna@bornindiaresearch.com" style={{ font: 'var(--type-small)', color: 'var(--text-on-dark)', borderBottom: '1px solid rgba(255,253,248,.3)', display: 'inline-block', marginTop: 8 }}>jyotsna@bornindiaresearch.com</a>
+        <div className="wrap" style={{ padding: '56px var(--gutter) 44px', display: 'flex', justifyContent: 'space-between', gap: 40, flexWrap: 'wrap' }}>
+          <div style={{ maxWidth: 340 }}>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 19, color: 'var(--text-on-dark)' }}>Groundwork</div>
+            <div style={{ ...label, color: 'var(--laterite-200)', marginTop: 6 }}>A product of Born India Research</div>
+            <p style={{ font: 'var(--type-caption)', color: 'var(--text-on-dark-muted)', marginTop: 18 }}>Born India Research Pvt Ltd · Est. 2026 · India</p>
           </div>
-          <div style={{ display: 'flex', gap: 56 }}>
+          <div style={{ display: 'flex', gap: 56, flexWrap: 'wrap' }}>
             <div>
-              <div style={{ ...label, color: 'var(--laterite-200)' }}>Research</div>
+              <div style={{ ...label, color: 'var(--laterite-200)' }}>Product</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
-                <a className="footlink" href="#coverage">Coverage</a>
-                <a className="footlink" href="#how">How it works</a>
-                <a className="footlink" href="#brief">The brief</a>
+                <a className="footlink" href="#cities">Cities</a>
+                <a className="footlink" href="#metrics">What we track</a>
+                <a className="footlink" href="#method">Method</a>
               </div>
             </div>
             <div>
               <div style={{ ...label, color: 'var(--laterite-200)' }}>Firm</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
                 <a className="footlink" href="#founder">Founder</a>
-                <a className="footlink" href={LI} target="_blank" rel="noopener">LinkedIn</a>
-                <a className="footlink" href="/brief/">Sample brief</a>
+                <a className="footlink" href={LI} target="_blank" rel="noopener">Let&apos;s connect</a>
               </div>
             </div>
           </div>

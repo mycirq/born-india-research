@@ -2,16 +2,16 @@ import './globals.css';
 
 export const metadata = {
   metadataBase: new URL('https://mybornindiaresearch.com'),
-  title: 'Born India Research · Independent real estate investment research',
+  title: 'Groundwork · Independent real estate investment research',
   description:
-    'Born India Research does the groundwork so you can invest in Indian real estate with clarity. Independent research, no commissions, the decision stays yours.',
+    'Groundwork is independent real-estate investment research for India, by Born India Research. We do the groundwork so you can invest with clarity. No commissions, the decision stays yours.',
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    siteName: 'Born India Research',
-    title: 'Born India Research · Independent real estate investment research',
+    siteName: 'Groundwork by Born India Research',
+    title: 'Groundwork · Independent real estate investment research',
     description:
-      'We do the groundwork so you can invest in Indian real estate with clarity. Independent, no commissions — the decision stays yours.',
+      'We do the groundwork so you can invest in Indian real estate with clarity. Independent, no commissions, the decision stays yours.',
     url: 'https://mybornindiaresearch.com/',
   },
   twitter: { card: 'summary_large_image' },

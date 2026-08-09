@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Sample brief · Born India Research',
-  description: 'A representative Born India Research investment brief — anonymised sample.',
+  title: 'Sample brief · Groundwork',
+  description: 'A representative Groundwork investment brief, anonymised sample.',
 };
 
 const label = { font: 'var(--type-label)', letterSpacing: 'var(--tracking-label)', textTransform: 'uppercase' };
@@ -43,8 +43,8 @@ export default function Brief() {
       <header style={{ borderBottom: '1px solid var(--line)' }}>
         <div className="wrap" style={{ height: 76, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
           <a href="/" style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 20, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-heading)' }}>Born India Research</span>
-            <span style={{ ...label, color: 'var(--text-faint)' }}>Est. 2026 · India</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 20, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-heading)' }}>Groundwork</span>
+            <span style={{ ...label, color: 'var(--text-faint)' }}>by Born India Research</span>
           </a>
           <a className="btn btn-secondary btn-sm" href="/">← Back to site</a>
         </div>

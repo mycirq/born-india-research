@@ -67,8 +67,14 @@ em{font-style:italic}
 
 /* cards */
 .card{background:var(--surface-card);border:1px solid var(--line);border-radius:var(--radius-2);transition:var(--transition)}
-.card-city{padding:var(--space-5);cursor:default}
-.card-city:hover{border-color:var(--laterite-500)}
+.card-city{padding:var(--space-5);cursor:pointer}
+/* !important so hover still wins over the inline selected-state border */
+.card-city:hover{border-color:var(--laterite-500) !important}
+
+/* mono pill controls: globe chips, back button */
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-weight:500;font-size:11px;letter-spacing:var(--tracking-label);text-transform:uppercase;padding:7px 11px;border-radius:var(--radius-1);border:1px solid var(--line-strong);background:var(--surface-card);color:var(--ink-900);cursor:pointer;transition:var(--transition)}
+.chip:hover{border-color:var(--ink-900)}
+.nav-links:hover{color:var(--laterite-600)}
 .card-how{padding:var(--card-padding)}
 .card-how:hover{border-color:var(--line-strong)}
 
@@ -83,13 +89,13 @@ em{font-style:italic}
 
 /* responsive */
 @media (max-width:1000px){
-  .g-hero,.g-two,.g-cta{grid-template-columns:1fr !important}
-  .g-four{grid-template-columns:repeat(2,1fr) !important}
+  .g-hero,.g-two,.g-cta,.g-detail,.g-mapsplit{grid-template-columns:minmax(0,1fr) !important}
+  .g-six,.g-four{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
   .g-hero{gap:var(--space-7) !important}
   .nav-links{display:none !important}
 }
 @media (max-width:720px){
-  .g-three,.g-four{grid-template-columns:1fr !important}
+  .g-three,.g-six,.g-four,.g-stats{grid-template-columns:minmax(0,1fr) !important}
   .cta-inner{padding:var(--space-6) !important}
 }
 @media (max-width:420px){
