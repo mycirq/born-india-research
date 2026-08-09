@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import GroundworkGlobe from './GroundworkGlobe';
+import Figure from './Figure';
 import { CITIES, TONES, getCity } from './data/cities';
+import { useOverlay, mergeHeadline, hasSourced } from './data/overlay';
 
 const LI = 'https://www.linkedin.com/in/jyotsnamaheshwari/';
 
@@ -65,6 +67,9 @@ export default function Page() {
   const [selected, setSelected] = useState('gurgaon');
   const [level, setLevel] = useState(0);
   const city = getCity(selected);
+  const overlay = useOverlay();
+  const headline = mergeHeadline(city, overlay);
+  const sourced = hasSourced(headline);
 
   const pick = (id) => { setSelected(id); setLevel(2); };
   const goBack = () => setLevel(level === 2 ? 1 : 0);
@@ -204,8 +209,12 @@ export default function Page() {
               <div style={{ font: 'var(--type-caption)', color: 'var(--text-muted)', marginTop: 6, maxWidth: 'var(--measure-prose)' }}>{city.summary}</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-end' }}>
-              <span style={{ ...label, padding: '5px 9px', borderRadius: 'var(--radius-1)', background: 'var(--caution-100)', color: 'var(--caution-500)' }}>Illustrative desk figures</span>
-              <span style={{ font: 'var(--type-caption)', color: 'var(--text-faint)' }}>{city.asOf}</span>
+              <span style={{ ...label, padding: '5px 9px', borderRadius: 'var(--radius-1)', background: sourced ? 'var(--verified-100)' : 'var(--caution-100)', color: sourced ? 'var(--verified-500)' : 'var(--caution-500)' }}>
+                {sourced ? 'Sourced figures' : 'Illustrative desk figures'}
+              </span>
+              <span style={{ font: 'var(--type-caption)', color: 'var(--text-faint)' }}>
+                {sourced ? `Updated ${overlay.generated_at}` : city.asOf}
+              </span>
               <a className="btn btn-primary" href={`/cities/${city.id}/`} style={{ padding: '10px 18px', fontSize: 14, whiteSpace: 'nowrap' }}>
                 Open the full {city.name} page →
               </a>
@@ -213,13 +222,7 @@ export default function Page() {
           </div>
 
           <div className="g-stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,minmax(0,1fr))', gap: 'var(--space-5)', padding: 'var(--space-5) 0', borderBottom: '1px solid var(--line)' }}>
-            {city.headline.map((h) => (
-              <div key={h.label} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <span style={{ ...label, color: 'var(--text-faint)' }}>{h.label}</span>
-                <span style={{ font: 'var(--type-figure)', color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums' }}>{h.value}</span>
-                <span style={{ font: 'var(--type-caption)', color: 'var(--text-muted)' }}>{h.note}</span>
-              </div>
-            ))}
+            {headline.map((h) => <Figure key={h.label} entry={h} />)}
           </div>
 
           <div className="g-two" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-7)', paddingTop: 'var(--space-5)' }}>

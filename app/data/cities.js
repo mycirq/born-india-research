@@ -13,10 +13,10 @@ export const CITIES = [
     summary: 'A corridor that has moved hard on infrastructure promises. The question is no longer whether it rose, but whether the asking prices have run ahead of what actually registers.',
     asOf: 'Desk estimates, Aug 2026',
     headline: [
-      { label: 'Median rate', value: '14,000', note: '₹/sqft, apartments' },
-      { label: '1-year change', value: '+12.0', note: 'Corridor level' },
-      { label: 'Gross yield', value: '2.1', note: 'Residential, before costs' },
-      { label: 'Overhang', value: '19', note: 'Months of unsold stock' },
+      { key: 'median_psf', label: 'Median rate', value: '14,000', note: '₹/sqft, apartments' },
+      { key: 'yoy_change_pct', label: '1-year change', value: '+12.0', note: 'Corridor level' },
+      { key: 'gross_yield_pct', label: 'Gross yield', value: '2.1', note: 'Residential, before costs' },
+      { key: 'overhang_months', label: 'Overhang', value: '19', note: 'Months of unsold stock' },
     ],
     rows: [
       { k: 'Rate range', v: '₹11,000 to ₹16,750' },
@@ -43,10 +43,10 @@ export const CITIES = [
     summary: 'The most liquid market we cover and the least forgiving on entry price. Most of the risk sits in society redevelopment timelines and carpet-area arithmetic.',
     asOf: 'Desk estimates, Aug 2026',
     headline: [
-      { label: 'Median rate', value: '28,400', note: '₹/sqft, MMR blended' },
-      { label: '1-year change', value: '+6.4', note: 'Blended, all segments' },
-      { label: 'Gross yield', value: '3.0', note: 'Residential, before costs' },
-      { label: 'Overhang', value: '26', note: 'Months of unsold stock' },
+      { key: 'median_psf', label: 'Median rate', value: '28,400', note: '₹/sqft, MMR blended' },
+      { key: 'yoy_change_pct', label: '1-year change', value: '+6.4', note: 'Blended, all segments' },
+      { key: 'gross_yield_pct', label: 'Gross yield', value: '3.0', note: 'Residential, before costs' },
+      { key: 'overhang_months', label: 'Overhang', value: '26', note: 'Months of unsold stock' },
     ],
     rows: [
       { k: 'Rate range', v: '₹12,500 to ₹92,000' },
@@ -73,10 +73,10 @@ export const CITIES = [
     summary: 'The market where title work matters most and where the cheapest headline rate is usually the one with the worst paperwork behind it.',
     asOf: 'Desk estimates, Aug 2026',
     headline: [
-      { label: 'Median rate', value: '9,600', note: '₹/sqft, apartments' },
-      { label: '1-year change', value: '+9.2', note: 'City level' },
-      { label: 'Gross yield', value: '3.4', note: 'Strongest of the four' },
-      { label: 'Overhang', value: '14', note: 'Months of unsold stock' },
+      { key: 'median_psf', label: 'Median rate', value: '9,600', note: '₹/sqft, apartments' },
+      { key: 'yoy_change_pct', label: '1-year change', value: '+9.2', note: 'City level' },
+      { key: 'gross_yield_pct', label: 'Gross yield', value: '3.4', note: 'Strongest of the four' },
+      { key: 'overhang_months', label: 'Overhang', value: '14', note: 'Months of unsold stock' },
     ],
     rows: [
       { k: 'Rate range', v: '₹6,200 to ₹14,800' },
@@ -103,10 +103,10 @@ export const CITIES = [
     summary: 'A thin market where appreciation stories are easy to tell and exits are hard to find. We cover it because clients keep asking, and we say so when liquidity is the problem.',
     asOf: 'Desk estimates, Aug 2026',
     headline: [
-      { label: 'Median rate', value: '6,300', note: '₹/sqft, apartments' },
-      { label: '1-year change', value: '+7.8', note: 'City level' },
-      { label: 'Gross yield', value: '2.4', note: 'Thin rental market' },
-      { label: 'Resales', value: 'Low', note: 'Liquidity is the risk' },
+      { key: 'median_psf', label: 'Median rate', value: '6,300', note: '₹/sqft, apartments' },
+      { key: 'yoy_change_pct', label: '1-year change', value: '+7.8', note: 'City level' },
+      { key: 'gross_yield_pct', label: 'Gross yield', value: '2.4', note: 'Thin rental market' },
+      { key: 'resale_depth', label: 'Resales', value: 'Low', note: 'Liquidity is the risk' },
     ],
     rows: [
       { k: 'Rate range', v: '₹4,100 to ₹9,800' },

@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import CityMap from './CityMap';
+import Figure from '../Figure';
 import { CITIES, TONES, getPins } from '../data/cities';
+import { useOverlay, mergeHeadline, hasSourced } from '../data/overlay';
 
 const LI = 'https://www.linkedin.com/in/jyotsnamaheshwari/';
 const label = {
@@ -26,6 +28,9 @@ export default function CityView({ city }) {
   const pins = getPins(city.id);
   const [pin, setPin] = useState(0);
   const active = pins[pin] || pins[0];
+  const overlay = useOverlay();
+  const headline = mergeHeadline(city, overlay);
+  const sourced = hasSourced(headline);
 
   return (
     <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
@@ -69,20 +74,18 @@ export default function CityView({ city }) {
             <p style={{ font: 'var(--type-lead)', color: 'var(--text-muted)', marginTop: 18, maxWidth: 'var(--measure-prose)' }}>{city.summary}</p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end' }}>
-            <span style={{ ...label, padding: '5px 9px', borderRadius: 'var(--radius-1)', background: 'var(--caution-100)', color: 'var(--caution-500)' }}>Illustrative desk figures</span>
-            <span style={{ font: 'var(--type-caption)', color: 'var(--text-faint)' }}>{city.asOf}</span>
+            <span style={{ ...label, padding: '5px 9px', borderRadius: 'var(--radius-1)', background: sourced ? 'var(--verified-100)' : 'var(--caution-100)', color: sourced ? 'var(--verified-500)' : 'var(--caution-500)' }}>
+              {sourced ? 'Sourced figures' : 'Illustrative desk figures'}
+            </span>
+            <span style={{ font: 'var(--type-caption)', color: 'var(--text-faint)' }}>
+              {sourced ? `Updated ${overlay.generated_at}` : city.asOf}
+            </span>
           </div>
         </div>
 
         {/* Headline metrics */}
         <div className="g-stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,minmax(0,1fr))', gap: 'var(--space-5)', marginTop: 'var(--space-7)', paddingTop: 'var(--space-5)', borderTop: '1px solid var(--line-strong)' }}>
-          {city.headline.map((h) => (
-            <div key={h.label} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              <span style={{ ...label, color: 'var(--text-faint)' }}>{h.label}</span>
-              <span style={{ font: 'var(--type-figure)', color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums' }}>{h.value}</span>
-              <span style={{ font: 'var(--type-caption)', color: 'var(--text-muted)' }}>{h.note}</span>
-            </div>
-          ))}
+          {headline.map((h) => <Figure key={h.label} entry={h} />)}
         </div>
 
         {/* 01 Micro-market map */}
