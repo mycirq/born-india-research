@@ -62,6 +62,26 @@
           "source": "NHB RESIDEX press release",
           "url": "https://residex.nhbonline.org.in/",
           "as_of": "2025-12-31"
+        },
+        "change_3y_pct": {
+          "display": "91.1",
+          "value": 91.1,
+          "unit": "Percent, 3-year, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2025-12-31"
+        },
+        "change_5y_pct": {
+          "display": "138.3",
+          "value": 138.3,
+          "unit": "Percent, 5-year, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2025-12-31"
         }
       },
       "markets": {}
@@ -137,6 +157,26 @@
           "source": "MahaRERA project registry",
           "url": "https://maharera.maharashtra.gov.in/map-projects-search-result",
           "as_of": "2026-08-10"
+        },
+        "change_3y_pct": {
+          "display": "17.5",
+          "value": 17.5,
+          "unit": "Percent, 3-year, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2025-12-31"
+        },
+        "change_5y_pct": {
+          "display": "21.1",
+          "value": 21.1,
+          "unit": "Percent, 5-year, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2025-12-31"
         }
       },
       "markets": {
@@ -275,6 +315,26 @@
           "source": "NHB RESIDEX press release",
           "url": "https://residex.nhbonline.org.in/",
           "as_of": "2026-03-31"
+        },
+        "change_3y_pct": {
+          "display": "43.3",
+          "value": 43.3,
+          "unit": "Percent, 3-year, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2025-12-31"
+        },
+        "change_5y_pct": {
+          "display": "65.5",
+          "value": 65.5,
+          "unit": "Percent, 5-year, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2025-12-31"
         }
       },
       "markets": {}
@@ -330,6 +390,36 @@
           "source": "NHB RESIDEX",
           "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
           "as_of": "2026-03-31"
+        },
+        "yoy_change_pct": {
+          "display": "+11.4",
+          "value": 11.4,
+          "unit": "Percent, 1-year, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2025-12-31"
+        },
+        "change_3y_pct": {
+          "display": "39.1",
+          "value": 39.1,
+          "unit": "Percent, 3-year, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2025-12-31"
+        },
+        "change_5y_pct": {
+          "display": "43.5",
+          "value": 43.5,
+          "unit": "Percent, 5-year, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2025-12-31"
         }
       },
       "markets": {}

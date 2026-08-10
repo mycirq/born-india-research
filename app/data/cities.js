@@ -20,8 +20,8 @@ export const CITIES = [
     ],
     rows: [
       { key: 'rate_range', k: 'Rate range', v: '₹11,000 to ₹16,750' },
-      { k: '3-year change', v: '+75.0%' },
-      { k: '5-year change', v: '+152.3%' },
+      { key: 'change_3y_pct', k: '3-year change', v: '+75.0%' },
+      { key: 'change_5y_pct', k: '5-year change', v: '+152.3%' },
       { k: 'Asking vs registered', v: 'Gap not yet measured' },
       { k: 'Quarterly absorption', v: '~4,900 units' },
       { k: 'RERA-registered share', v: 'Under verification' },
@@ -50,8 +50,8 @@ export const CITIES = [
     ],
     rows: [
       { key: 'rate_range', k: 'Rate range', v: '₹12,500 to ₹92,000' },
-      { k: '3-year change', v: '+21.5%' },
-      { k: '5-year change', v: '+38.0%' },
+      { key: 'change_3y_pct', k: '3-year change', v: '+21.5%' },
+      { key: 'change_5y_pct', k: '5-year change', v: '+38.0%' },
       { k: 'Carpet-to-super ratio', v: 'Checked per project' },
       { k: 'Redevelopment stock', v: 'High share of resale' },
       { k: 'Days on market', v: '~110 days, resale' },
@@ -80,7 +80,7 @@ export const CITIES = [
     ],
     rows: [
       { key: 'rate_range', k: 'Rate range', v: '₹6,200 to ₹14,800' },
-      { k: '3-year change', v: '+31.0%' },
+      { key: 'change_3y_pct', k: '3-year change', v: '+31.0%' },
       { k: 'Plotted land, east', v: '₹1,900 to ₹2,400' },
       { k: 'Conversion orders', v: 'Checked per layout' },
       { k: 'Quarterly absorption', v: '~13,000 units' },
@@ -110,7 +110,7 @@ export const CITIES = [
     ],
     rows: [
       { key: 'rate_range', k: 'Rate range', v: '₹4,100 to ₹9,800' },
-      { k: '3-year change', v: '+24.0%' },
+      { key: 'change_3y_pct', k: '3-year change', v: '+24.0%' },
       { k: 'Land, valley belt', v: '₹1,500 to ₹4,200' },
       { k: 'Second-home share', v: 'Majority of demand' },
       { k: 'Days on market', v: 'Long, seasonal' },
