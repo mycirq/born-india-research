@@ -127,92 +127,9 @@
           "source": "NHB RESIDEX press release",
           "url": "https://residex.nhbonline.org.in/",
           "as_of": "2026-03-31"
-        },
-        "projects_registered": {
-          "display": "23,701",
-          "value": 23701.0,
-          "unit": "RERA-registered projects, MMR",
-          "status": "sourced",
-          "method": "rera_filing",
-          "source": "MahaRERA project registry",
-          "url": "https://maharera.maharashtra.gov.in/map-projects-search-result",
-          "as_of": "2026-08-10"
         }
       },
-      "markets": {
-        "Chembur": {
-          "projects_registered": {
-            "display": "943",
-            "value": 943.0,
-            "unit": "projects within 3 km",
-            "status": "sourced",
-            "method": "rera_filing",
-            "source": "MahaRERA project registry",
-            "url": "https://maharera.maharashtra.gov.in/map-projects-search-result",
-            "as_of": "2026-08-10"
-          }
-        },
-        "Mulund": {
-          "projects_registered": {
-            "display": "730",
-            "value": 730.0,
-            "unit": "projects within 3 km",
-            "status": "sourced",
-            "method": "rera_filing",
-            "source": "MahaRERA project registry",
-            "url": "https://maharera.maharashtra.gov.in/map-projects-search-result",
-            "as_of": "2026-08-10"
-          }
-        },
-        "Wadala": {
-          "projects_registered": {
-            "display": "588",
-            "value": 588.0,
-            "unit": "projects within 3 km",
-            "status": "sourced",
-            "method": "rera_filing",
-            "source": "MahaRERA project registry",
-            "url": "https://maharera.maharashtra.gov.in/map-projects-search-result",
-            "as_of": "2026-08-10"
-          }
-        },
-        "Panvel": {
-          "projects_registered": {
-            "display": "643",
-            "value": 643.0,
-            "unit": "projects within 3 km",
-            "status": "sourced",
-            "method": "rera_filing",
-            "source": "MahaRERA project registry",
-            "url": "https://maharera.maharashtra.gov.in/map-projects-search-result",
-            "as_of": "2026-08-10"
-          }
-        },
-        "Thane": {
-          "projects_registered": {
-            "display": "705",
-            "value": 705.0,
-            "unit": "projects within 3 km",
-            "status": "sourced",
-            "method": "rera_filing",
-            "source": "MahaRERA project registry",
-            "url": "https://maharera.maharashtra.gov.in/map-projects-search-result",
-            "as_of": "2026-08-10"
-          }
-        },
-        "Andheri East": {
-          "projects_registered": {
-            "display": "592",
-            "value": 592.0,
-            "unit": "projects within 3 km",
-            "status": "sourced",
-            "method": "rera_filing",
-            "source": "MahaRERA project registry",
-            "url": "https://maharera.maharashtra.gov.in/map-projects-search-result",
-            "as_of": "2026-08-10"
-          }
-        }
-      }
+      "markets": {}
     },
     "bengaluru": {
       "headline": {
