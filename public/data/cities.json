@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-08-10",
+  "cities": {
+    "gurgaon": {
+      "headline": {
+        "median_psf": {
+          "display": "18,967",
+          "value": 18967.0,
+          "unit": "₹/sqft, weighted average",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "yoy_change_pct": {
+          "display": "+22.8",
+          "value": 22.8,
+          "unit": "Percent, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX press release",
+          "url": "https://residex.nhbonline.org.in/",
+          "as_of": "2025-12-31"
+        }
+      },
+      "markets": {}
+    },
+    "mumbai": {
+      "headline": {
+        "median_psf": {
+          "display": "29,407",
+          "value": 29407.0,
+          "unit": "₹/sqft, weighted average",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "yoy_change_pct": {
+          "display": "+4.5",
+          "value": 4.5,
+          "unit": "Percent, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX press release",
+          "url": "https://residex.nhbonline.org.in/",
+          "as_of": "2026-03-31"
+        }
+      },
+      "markets": {}
+    },
+    "bengaluru": {
+      "headline": {
+        "median_psf": {
+          "display": "12,301",
+          "value": 12301.0,
+          "unit": "₹/sqft, weighted average",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "yoy_change_pct": {
+          "display": "+13.1",
+          "value": 13.1,
+          "unit": "Percent, city index",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX press release",
+          "url": "https://residex.nhbonline.org.in/",
+          "as_of": "2026-03-31"
+        }
+      },
+      "markets": {}
+    },
+    "dehradun": {
+      "headline": {
+        "median_psf": {
+          "display": "8,161",
+          "value": 8161.0,
+          "unit": "₹/sqft, weighted average",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        }
+      },
+      "markets": {}
+    }
+  }
+}
