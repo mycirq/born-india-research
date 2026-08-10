@@ -92,3 +92,24 @@ export function mergeRows(city, overlay) {
   }
   return rows;
 }
+
+/* Labels for micro-market metrics the backend can publish. */
+const MARKET_ROWS = {
+  projects_registered: 'RERA projects within 3 km',
+};
+
+/**
+ * Merge a micro-market's static rows with anything sourced for it.
+ * Sourced rows are appended and carry their own provenance, so a pin can show
+ * a real figure alongside desk estimates without the two being confused.
+ */
+export function mergeMarketRows(cityId, marketName, staticRows, overlay) {
+  const live = overlay?.cities?.[cityId]?.markets?.[marketName] || {};
+  const rows = staticRows.map(([k, v]) => ({ k, v, status: 'desk' }));
+  for (const [key, labelText] of Object.entries(MARKET_ROWS)) {
+    const o = live[key];
+    if (!o || o.status !== 'sourced') continue;
+    rows.push({ k: labelText, v: o.display, status: 'sourced', source: o.source });
+  }
+  return rows;
+}
