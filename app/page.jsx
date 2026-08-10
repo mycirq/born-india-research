@@ -400,6 +400,7 @@ export default function Page() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
                 <a className="footlink" href="#founder">Founder</a>
                 <a className="footlink" href={LI} target="_blank" rel="noopener">Let&apos;s connect</a>
+                <a className="footlink" href="/privacy/">Privacy</a>
               </div>
             </div>
           </div>
