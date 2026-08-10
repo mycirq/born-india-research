@@ -4,7 +4,7 @@ import { useState } from 'react';
 import GroundworkGlobe from './GroundworkGlobe';
 import Figure from './Figure';
 import { CITIES, TONES, getCity } from './data/cities';
-import { useOverlay, mergeHeadline, hasSourced } from './data/overlay';
+import { useOverlay, mergeHeadline, mergeRows, hasSourced } from './data/overlay';
 
 const LI = 'https://www.linkedin.com/in/jyotsnamaheshwari/';
 
@@ -69,6 +69,7 @@ export default function Page() {
   const city = getCity(selected);
   const overlay = useOverlay();
   const headline = mergeHeadline(city, overlay);
+  const rows = mergeRows(city, overlay);
   const sourced = hasSourced(headline);
 
   const pick = (id) => { setSelected(id); setLevel(2); };
@@ -228,11 +229,16 @@ export default function Page() {
           <div className="g-two" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-7)', paddingTop: 'var(--space-5)' }}>
             <div>
               <div style={{ ...label, color: 'var(--text-faint)', marginBottom: 10 }}>The metric sheet</div>
-              {city.rows.map((r) => (
-                <div key={r.k} style={{ display: 'flex', alignItems: 'baseline', gap: 4, font: 'var(--type-data)', fontSize: 14, color: 'var(--text-body)', padding: '9px 0', borderBottom: '1px solid var(--line)' }}>
-                  <span style={{ whiteSpace: 'nowrap' }}>{r.k}</span>
-                  <span style={{ flex: '1 1 12px', minWidth: 12, borderBottom: '1px dotted var(--ink-100)', margin: '0 6px', transform: 'translateY(-4px)' }} />
-                  <span style={{ color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums', textAlign: 'right' }}>{r.v}</span>
+              {rows.map((r) => (
+                <div key={r.k} style={{ padding: '9px 0', borderBottom: '1px solid var(--line)' }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, font: 'var(--type-data)', fontSize: 14, color: 'var(--text-body)' }}>
+                    <span style={{ whiteSpace: 'nowrap' }}>{r.k}</span>
+                    <span style={{ flex: '1 1 12px', minWidth: 12, borderBottom: '1px dotted var(--ink-100)', margin: '0 6px', transform: 'translateY(-4px)' }} />
+                    <span style={{ color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums', textAlign: 'right' }}>{r.v}</span>
+                  </div>
+                  {r.status === 'sourced' && (
+                    <div style={{ font: 'var(--type-caption)', color: 'var(--verified-500)', marginTop: 3 }}>{r.source}</div>
+                  )}
                 </div>
               ))}
             </div>

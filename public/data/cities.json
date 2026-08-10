@@ -13,6 +13,46 @@
           "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
           "as_of": "2026-03-31"
         },
+        "psf_small": {
+          "display": "13,706",
+          "value": 13706.0,
+          "unit": "₹/sqft, under 60 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_mid": {
+          "display": "21,184",
+          "value": 21184.0,
+          "unit": "₹/sqft, 60 to 110 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_large": {
+          "display": "19,765",
+          "value": 19765.0,
+          "unit": "₹/sqft, over 110 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "rate_range": {
+          "display": "₹13,706 to ₹21,184",
+          "value": 21184.0,
+          "unit": "₹/sqft, across size bands",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
         "yoy_change_pct": {
           "display": "+22.8",
           "value": 22.8,
@@ -32,6 +72,46 @@
           "display": "29,407",
           "value": 29407.0,
           "unit": "₹/sqft, weighted average",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_small": {
+          "display": "27,046",
+          "value": 27046.0,
+          "unit": "₹/sqft, under 60 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_mid": {
+          "display": "32,408",
+          "value": 32408.0,
+          "unit": "₹/sqft, 60 to 110 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_large": {
+          "display": "39,494",
+          "value": 39494.0,
+          "unit": "₹/sqft, over 110 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "rate_range": {
+          "display": "₹27,046 to ₹39,494",
+          "value": 39494.0,
+          "unit": "₹/sqft, across size bands",
           "status": "sourced",
           "method": "official_index",
           "source": "NHB RESIDEX",
@@ -63,6 +143,46 @@
           "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
           "as_of": "2026-03-31"
         },
+        "psf_small": {
+          "display": "11,106",
+          "value": 11106.0,
+          "unit": "₹/sqft, under 60 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_mid": {
+          "display": "11,049",
+          "value": 11049.0,
+          "unit": "₹/sqft, 60 to 110 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_large": {
+          "display": "15,063",
+          "value": 15063.0,
+          "unit": "₹/sqft, over 110 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "rate_range": {
+          "display": "₹11,049 to ₹15,063",
+          "value": 15063.0,
+          "unit": "₹/sqft, across size bands",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
         "yoy_change_pct": {
           "display": "+13.1",
           "value": 13.1,
@@ -82,6 +202,46 @@
           "display": "8,161",
           "value": 8161.0,
           "unit": "₹/sqft, weighted average",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_small": {
+          "display": "8,103",
+          "value": 8103.0,
+          "unit": "₹/sqft, under 60 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_mid": {
+          "display": "8,167",
+          "value": 8167.0,
+          "unit": "₹/sqft, 60 to 110 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "psf_large": {
+          "display": "8,202",
+          "value": 8202.0,
+          "unit": "₹/sqft, over 110 sqm",
+          "status": "sourced",
+          "method": "official_index",
+          "source": "NHB RESIDEX",
+          "url": "https://residex.nhbonline.org.in/DashboardBY2024/DashboardBY2024",
+          "as_of": "2026-03-31"
+        },
+        "rate_range": {
+          "display": "₹8,103 to ₹8,202",
+          "value": 8202.0,
+          "unit": "₹/sqft, across size bands",
           "status": "sourced",
           "method": "official_index",
           "source": "NHB RESIDEX",

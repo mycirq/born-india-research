@@ -54,3 +54,41 @@ export function mergeHeadline(city, overlay) {
 export function hasSourced(entries) {
   return entries.some((e) => e.status === 'sourced');
 }
+
+/* Metrics the backend can publish that have no baseline row of their own.
+ * They are appended to the metric sheet once real, and simply absent until
+ * then — a row that says nothing is worse than no row. */
+const EXTRA_ROWS = {
+  psf_small: 'Rate, under 60 sqm',
+  psf_mid: 'Rate, 60 to 110 sqm',
+  psf_large: 'Rate, over 110 sqm',
+  projects_registered: 'RERA-registered projects',
+  launches_last_year: 'Launches, last 12 months',
+  completions_due_2y: 'Completions due, 2 years',
+  developer_slippage_pct: 'Developer delay rate',
+};
+
+/**
+ * Merge a city's static metric sheet with sourced figures.
+ *
+ * Baseline rows carrying a `key` are replaced when the backend has that metric;
+ * sourced metrics with no baseline row are appended. Rows the backend knows
+ * nothing about are left exactly as written.
+ */
+export function mergeRows(city, overlay) {
+  const live = overlay?.cities?.[city.id]?.headline || {};
+
+  const rows = city.rows.map((r) => {
+    const o = r.key && live[r.key];
+    if (!o || o.status === 'gap') return { ...r, status: 'desk' };
+    return { ...r, v: o.display ?? r.v, status: o.status, source: o.source, asOf: o.as_of };
+  });
+
+  const shown = new Set(city.rows.map((r) => r.key).filter(Boolean));
+  for (const [key, label] of Object.entries(EXTRA_ROWS)) {
+    const o = live[key];
+    if (!o || shown.has(key) || o.status !== 'sourced') continue;
+    rows.push({ key, k: label, v: o.display, status: 'sourced', source: o.source, asOf: o.as_of });
+  }
+  return rows;
+}

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CityMap from './CityMap';
 import Figure from '../Figure';
 import { CITIES, TONES, getPins } from '../data/cities';
-import { useOverlay, mergeHeadline, hasSourced } from '../data/overlay';
+import { useOverlay, mergeHeadline, mergeRows, hasSourced } from '../data/overlay';
 
 const LI = 'https://www.linkedin.com/in/jyotsnamaheshwari/';
 const label = {
@@ -30,6 +30,7 @@ export default function CityView({ city }) {
   const active = pins[pin] || pins[0];
   const overlay = useOverlay();
   const headline = mergeHeadline(city, overlay);
+  const rows = mergeRows(city, overlay);
   const sourced = hasSourced(headline);
 
   return (
@@ -144,11 +145,18 @@ export default function CityView({ city }) {
         </div>
         <div className="g-two" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-7)', marginTop: 'var(--space-5)' }}>
           <div>
-            {city.rows.map((r) => (
-              <div key={r.k} style={{ display: 'flex', alignItems: 'baseline', gap: 4, font: 'var(--type-data)', fontSize: 14, color: 'var(--text-body)', padding: '9px 0', borderBottom: '1px solid var(--line)' }}>
-                <span style={{ whiteSpace: 'nowrap' }}>{r.k}</span>
-                <span style={{ flex: '1 1 12px', minWidth: 12, borderBottom: '1px dotted var(--ink-100)', margin: '0 6px', transform: 'translateY(-4px)' }} />
-                <span style={{ color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums', textAlign: 'right' }}>{r.v}</span>
+            {rows.map((r) => (
+              <div key={r.k} style={{ padding: '9px 0', borderBottom: '1px solid var(--line)' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, font: 'var(--type-data)', fontSize: 14, color: 'var(--text-body)' }}>
+                  <span style={{ whiteSpace: 'nowrap' }}>{r.k}</span>
+                  <span style={{ flex: '1 1 12px', minWidth: 12, borderBottom: '1px dotted var(--ink-100)', margin: '0 6px', transform: 'translateY(-4px)' }} />
+                  <span style={{ color: 'var(--text-heading)', fontVariantNumeric: 'tabular-nums', textAlign: 'right' }}>{r.v}</span>
+                </div>
+                {r.status === 'sourced' && (
+                  <div style={{ font: 'var(--type-caption)', color: 'var(--verified-500)', marginTop: 3 }}>
+                    {r.source}{r.asOf ? ` · ${r.asOf}` : ''}
+                  </div>
+                )}
               </div>
             ))}
           </div>
