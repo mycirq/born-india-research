@@ -16,18 +16,30 @@
   --font-display:"Newsreader",Georgia,"Times New Roman",serif;
   --font-sans:"Public Sans",-apple-system,"Segoe UI",sans-serif;
   --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",monospace;
-  --type-display-1:400 clamp(44px,6vw,76px)/1.04 var(--font-display);
-  --type-display-2:400 clamp(32px,4vw,46px)/1.10 var(--font-display);
-  --type-title:500 26px/1.2 var(--font-display);
-  --type-subtitle:400 20px/1.35 var(--font-display);
-  --type-lead:400 19px/1.6 var(--font-sans);
-  --type-body:400 16px/1.65 var(--font-sans);
-  --type-small:400 14px/1.55 var(--font-sans);
-  --type-caption:400 13px/1.45 var(--font-sans);
-  --type-label:500 11px/1.2 var(--font-mono);
-  --type-data:400 15px/1.4 var(--font-mono);
-  --type-figure:400 34px/1.05 var(--font-mono);
-  --tracking-label:0.16em;--tracking-tight:-0.015em;
+  /* Sizes in rem so a reader's larger text setting scales the page with them
+     (Dynamic Type). Leading tightens as size grows. */
+  --type-display-1:400 clamp(2.75rem,6vw,4.75rem)/1.04 var(--font-display);
+  --type-display-2:400 clamp(2rem,4vw,2.875rem)/1.10 var(--font-display);
+  --type-title:500 1.625rem/1.2 var(--font-display);
+  --type-subtitle:400 1.25rem/1.35 var(--font-display);
+  --type-lead:400 1.1875rem/1.6 var(--font-sans);
+  --type-body:400 1rem/1.65 var(--font-sans);
+  --type-small:400 .875rem/1.55 var(--font-sans);
+  --type-caption:400 .8125rem/1.45 var(--font-sans);
+  --type-label:500 .6875rem/1.2 var(--font-mono);
+  --type-data:400 .9375rem/1.4 var(--font-mono);
+  --type-figure:400 2.125rem/1.05 var(--font-mono);
+
+  /* Tracking is size-specific: letters read too far apart as type grows, and
+     too tight as it shrinks. One value across the scale is wrong somewhere. */
+  --tracking-display-1:-0.028em;
+  --tracking-display-2:-0.022em;
+  --tracking-title:-0.014em;
+  --tracking-ui:-0.006em;
+  --tracking-body:0em;
+  --tracking-small:0.006em;
+  --tracking-label:0.16em;
+  --tracking-tight:var(--tracking-ui); /* legacy alias */
   --measure-prose:66ch;--measure-lead:46ch;
   --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;
   --space-6:32px;--space-7:48px;--space-8:64px;--space-9:96px;--space-10:128px;
@@ -40,9 +52,12 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;font-size:100%}
 body{margin:0;background:var(--paper);color:var(--text-body);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
-h1,h2,h3{margin:0;font-weight:400}
+/* Newsreader ships a real optical-size axis (opsz 6..72, loaded above); let the
+   browser pick the right cut per size instead of scaling one master. */
+h1,h2,h3{margin:0;font-weight:400;font-optical-sizing:auto}
+.font-display,[style*="--font-display"]{font-optical-sizing:auto}
 p{margin:0}
 a{color:var(--text-link);text-decoration:none}
 em{font-style:italic}
@@ -85,7 +100,28 @@ em{font-style:italic}
 /* scroll reveal (JS toggles .in) */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity 620ms var(--ease),transform 620ms var(--ease)}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* Feedback on press, not on release. The pressed state has to appear on
+   pointer-down or the control reads as dead for the length of the click. */
+.btn,.chip{transition:var(--transition),transform 90ms cubic-bezier(.2,.7,.4,1)}
+.btn:active,.chip:active{transform:scale(.975)}
+.map-pin{transition:transform 90ms cubic-bezier(.2,.7,.4,1)}
+.map-pin:active{transform:scale(.9)}
+.map-ctrl{transition:var(--transition),transform 90ms cubic-bezier(.2,.7,.4,1)}
+.map-ctrl:active{transform:scale(.9)}
+
+/* Reduced motion means a gentler equivalent, not the absence of feedback:
+   keep opacity/colour changes, drop travel and overshoot. */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .btn:active,.chip:active,.map-pin:active,.map-ctrl:active{transform:none}
+  .btn,.chip,.map-pin,.map-ctrl{transition:var(--transition)}
+}
+@media (prefers-contrast: more){
+  :root{--line:#b9b09c;--line-strong:#8d8471;--text-muted:var(--ink-700);--text-faint:var(--ink-500)}
+  .card,.chip{border-color:var(--line-strong)}
+}
 
 /* responsive */
 @media (max-width:1000px){

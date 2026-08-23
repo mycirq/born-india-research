@@ -84,7 +84,7 @@ export default function Page() {
           <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
             <Mark />
             <span style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: 19, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-heading)' }}>Groundwork</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 19, letterSpacing: 'var(--tracking-ui)', color: 'var(--text-heading)' }}>Groundwork</span>
               <span style={{ ...label, color: 'var(--text-muted)' }}>By Born India Research</span>
             </span>
           </a>
@@ -105,7 +105,7 @@ export default function Page() {
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, ...label, padding: '5px 10px', borderRadius: 'var(--radius-1)', background: 'var(--laterite-100)', color: 'var(--laterite-600)' }}>
               Introducing Groundwork
             </span>
-            <h1 style={{ font: 'var(--type-display-1)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-tight)', margin: '22px 0 18px', textWrap: 'pretty' }}>
+            <h1 style={{ font: 'var(--type-display-1)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-display-1)', margin: '22px 0 18px', textWrap: 'pretty' }}>
               City research for Indian property, built one street at a time.
             </h1>
             <p style={{ font: 'var(--type-lead)', color: 'var(--text-muted)', maxWidth: 'var(--measure-lead)' }}>
@@ -292,7 +292,7 @@ export default function Page() {
       {/* Trust band */}
       <section style={{ background: 'var(--surface-inverse)', padding: 'var(--space-8) 0', marginTop: 'var(--space-8)' }}>
         <div className="wrap">
-          <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-on-dark)', maxWidth: 900, letterSpacing: 'var(--tracking-tight)', textWrap: 'pretty' }}>
+          <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-on-dark)', maxWidth: 900, letterSpacing: 'var(--tracking-display-2)', textWrap: 'pretty' }}>
             Real estate in India doesn&apos;t have a data problem.<br /><em style={{ color: '#e0b49c' }}>It has a trust problem.</em>
           </h2>
           <p style={{ font: 'var(--type-small)', color: 'var(--text-on-dark-muted)', marginTop: 20, maxWidth: 560 }}>
@@ -339,7 +339,7 @@ export default function Page() {
       <section id="founder" className="wrap" style={{ paddingTop: 'var(--space-8)' }}>
         <SecHead n="04">Who is behind this</SecHead>
         <div style={{ marginTop: 'var(--space-5)' }}>
-          <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-tight)' }}>Jyotsna Maheshwari</h2>
+          <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-display-2)' }}>Jyotsna Maheshwari</h2>
           <div style={{ ...label, color: 'var(--laterite-600)', marginTop: 10 }}>Founder, Born India Research</div>
           <p style={{ font: 'var(--type-lead)', color: 'var(--text-muted)', maxWidth: 'var(--measure-prose)', marginTop: 20 }}>
             Groundwork is a one-person product today, and that is deliberate. Every sheet is researched, walked and written by the person whose name is on it.
@@ -364,7 +364,7 @@ export default function Page() {
         <div className="g-cta cta-inner" style={{ background: 'var(--surface-inverse)', borderRadius: 'var(--radius-3)', padding: 'var(--space-8)', display: 'grid', gridTemplateColumns: '1.2fr .8fr', gap: 'var(--space-7)', alignItems: 'center' }}>
           <div>
             <div style={{ ...label, color: 'var(--laterite-200)' }}>Built for the capital-rich and time-poor</div>
-            <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-on-dark)', letterSpacing: 'var(--tracking-tight)', marginTop: 16, textWrap: 'pretty' }}>
+            <h2 style={{ font: 'var(--type-display-2)', color: 'var(--text-on-dark)', letterSpacing: 'var(--tracking-display-2)', marginTop: 16, textWrap: 'pretty' }}>
               Tell us which city you&apos;re weighing up.
             </h2>
             <p style={{ font: 'var(--type-small)', color: 'var(--text-on-dark-muted)', marginTop: 14, maxWidth: 460 }}>

@@ -42,7 +42,7 @@ export default function CityView({ city }) {
           <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
             <Mark />
             <span style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: 19, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-heading)' }}>Groundwork</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 19, letterSpacing: 'var(--tracking-ui)', color: 'var(--text-heading)' }}>Groundwork</span>
               <span style={{ ...label, color: 'var(--text-muted)' }}>By Born India Research</span>
             </span>
           </a>
@@ -70,7 +70,7 @@ export default function CityView({ city }) {
         <div className="g-two" style={{ display: 'grid', gridTemplateColumns: '1.6fr .9fr', gap: 'var(--space-7)', alignItems: 'end', marginTop: 'var(--space-4)' }}>
           <div>
             <div style={{ ...label, color: 'var(--laterite-500)' }}>{city.kicker}</div>
-            <h1 style={{ font: 'var(--type-display-1)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-tight)', marginTop: 10, textWrap: 'pretty' }}>
+            <h1 style={{ font: 'var(--type-display-1)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-display-1)', marginTop: 10, textWrap: 'pretty' }}>
               {city.name}
             </h1>
             <p style={{ font: 'var(--type-lead)', color: 'var(--text-muted)', marginTop: 18, maxWidth: 'var(--measure-prose)' }}>{city.summary}</p>

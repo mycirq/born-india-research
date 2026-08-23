@@ -6,3 +6,4 @@
 .env*.local
 _handoff/
 design-system/
+.claude/settings.local.json
