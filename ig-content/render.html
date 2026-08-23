@@ -1,0 +1,124 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Groundwork card renderer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Public+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f4ec; --surface:#fffdf8; --ink-900:#15130e; --ink-700:#3a362c;
+    --ink-500:#6b6455; --ink-300:#736b5c; --line:#e6e0d2; --line-strong:#d6cfbe;
+    --laterite-500:#a8461d; --laterite-600:#8c3915;
+    --verified-500:#3e6047; --verified-100:#e2ebe3;
+    --display:"Newsreader",Georgia,serif; --sans:"Public Sans",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:#5a5a5a;font-family:var(--sans);padding:0}
+  /* Cards laid out in a fixed grid so one screenshot yields many, then each is
+     cropped locally by sips. Gap is 0 so crop maths stays exact. */
+  #sheet{display:grid;grid-template-columns:repeat(2,540px);gap:0;width:1080px}
+  .card{
+    width:540px;height:675px;background:var(--paper);color:var(--ink-700);
+    padding:52px 46px 42px;display:flex;flex-direction:column;
+    font-optical-sizing:auto;overflow:hidden;
+  }
+  .eyebrow{font:500 9px/1.2 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--laterite-600);display:flex;align-items:center;gap:9px}
+  .eyebrow .rule{flex:1;border-top:1px solid var(--line-strong)}
+  h1{font:400 38px/1.12 var(--display);letter-spacing:-.022em;color:var(--ink-900);
+    margin-top:24px;text-wrap:pretty}
+  h1.sm{font-size:31px;line-height:1.14}
+  .lede{font:400 13.5px/1.55 var(--sans);color:var(--ink-500);margin-top:16px;max-width:42ch}
+  .kicker{font:500 13px/1.5 var(--sans);color:var(--ink-900);margin-top:auto;
+    padding-top:18px;max-width:40ch}
+  /* figure template */
+  .fig-wrap{margin-top:auto;padding-top:20px}
+  .fig-big{font:400 82px/1 var(--mono);color:var(--ink-900);letter-spacing:-.02em}
+  .fig-unit{font:500 10px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-500);margin-top:14px;max-width:30ch}
+  /* define template */
+  .term{font:500 44px/1.1 var(--display);letter-spacing:-.02em;color:var(--ink-900);margin-top:26px}
+  .def{font:400 15px/1.6 var(--sans);color:var(--ink-700);margin-top:18px;max-width:38ch}
+  .defnote{font:400 12.5px/1.5 var(--sans);color:var(--laterite-600);margin-top:14px;max-width:38ch}
+  /* rows template */
+  .rows{margin-top:auto;border-top:1px solid var(--line-strong)}
+  .row{display:flex;align-items:baseline;justify-content:space-between;
+    padding:17px 0;border-bottom:1px solid var(--line)}
+  .row .band{font:500 9px/1.2 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-500)}
+  .row .fg{font:400 31px/1 var(--mono);color:var(--ink-900);letter-spacing:-.01em}
+  .row.peak .fg{color:var(--laterite-500)} .row.peak .band{color:var(--laterite-600)}
+  /* foot */
+  .foot{display:flex;align-items:center;justify-content:space-between;margin-top:20px;gap:12px}
+  .src{font:400 8.5px/1.35 var(--mono);letter-spacing:.05em;color:var(--ink-300);text-transform:uppercase}
+  .badge{font:500 8px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--verified-500);background:var(--verified-100);padding:5px 8px;border-radius:2px;white-space:nowrap}
+  .mark{display:flex;align-items:center;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .mark span{font:500 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-900)}
+  .pager{margin-left:auto;font:500 9px/1 var(--mono);letter-spacing:.14em;color:var(--ink-300)}
+</style></head><body>
+<div id="sheet"></div>
+
+<script>
+const MARK = `<div class="mark">
+  <svg width="17" height="17" viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="32" cy="32" r="31" fill="#a8461d"/>
+    <g stroke="#f7f4ec" fill="none" stroke-width="1.4" opacity=".62">
+      <ellipse cx="32" cy="32" rx="12.5" ry="31"/><line x1="1" y1="32" x2="63" y2="32"/>
+    </g>
+    <circle cx="41.5" cy="24" r="4.6" fill="#f7f4ec"/>
+  </svg><span>Groundwork</span>__PAGER__</div>`;
+
+const esc = s => (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function foot(s, pager){
+  const badge = /RESIDEX|IGR|RERA Act|IGR Maharashtra/.test(s.source||"")
+    ? '<div class="badge">Sourced</div>' : '';
+  return `<div class="foot"><div class="src">${esc(s.source)}</div>${badge}</div>`
+       + MARK.replace("__PAGER__", pager ? `<span class="pager">${pager}</span>` : "");
+}
+
+function render(s, pager){
+  const eb = `<div class="eyebrow">${esc(s.eyebrow)}<span class="rule"></span></div>`;
+  let body = "";
+  if (s.template === "statement"){
+    body = `<h1${(s.headline||"").length > 58 ? ' class="sm"' : ''}>${esc(s.headline)}</h1>
+            <p class="lede">${esc(s.lede)}</p>
+            ${s.kicker ? `<p class="kicker">${esc(s.kicker)}</p>` : '<div style="margin-top:auto"></div>'}`;
+  } else if (s.template === "figure"){
+    body = `<p class="lede" style="margin-top:22px">${esc(s.lede)}</p>
+            <div class="fig-wrap"><div class="fig-big">${esc(s.figure)}</div>
+            <div class="fig-unit">${esc(s.unit)}</div></div>`;
+  } else if (s.template === "define"){
+    body = `<div class="term">${esc(s.term)}</div>
+            <p class="def">${esc(s.definition)}</p>
+            <p class="defnote">${esc(s.note)}</p>
+            <div style="margin-top:auto"></div>`;
+  } else if (s.template === "rows"){
+    body = `<h1${(s.headline||"").length > 58 ? ' class="sm"' : ''}>${esc(s.headline)}</h1>
+            <p class="lede">${esc(s.lede)}</p>
+            <div class="rows">${s.rows.map(r =>
+              `<div class="row${r[2] ? ' peak' : ''}"><span class="band">${esc(r[0])}</span>
+               <span class="fg">${esc(r[1])}</span></div>`).join("")}</div>`;
+  }
+  return `<div class="card" data-id="${s._id}">${eb}${body}${foot(s, pager)}</div>`;
+}
+
+(async () => {
+  const data = await (await fetch("posts.json")).json();
+  const cards = [];
+  for (const p of data.posts){
+    p.slides.forEach((s, i) => {
+      s._id = p.slides.length > 1 ? `${p.id}-${String(i+1).padStart(2,"0")}` : p.id;
+      cards.push(render(s, p.slides.length > 1 ? `${i+1}/${p.slides.length}` : ""));
+    });
+  }
+  // pad to a multiple of 3 so the last screenshot row is complete
+  while (cards.length % 2) cards.push('<div class="card" data-id="_pad"></div>');
+  document.getElementById("sheet").innerHTML = cards.join("");
+  await document.fonts.ready;
+  window.__ready = true;
+  window.__ids = [...document.querySelectorAll(".card")].map(c => c.dataset.id);
+})();
+</script>
+</body></html>

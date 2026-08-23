@@ -1,0 +1,373 @@
+{
+  "meta": {
+    "account": "groundwork",
+    "generated_for": "10-day launch block, day 1 already published",
+    "figures_as_of": "2026-08-23",
+    "note": "Every figure here is copied from mybornindiaresearch.com/data/cities.json. Do not invent numbers. Slides render at 1080x1350 (4:5). No em dashes, no en dashes."
+  },
+  "cities": {
+    "gurgaon": {
+      "median": "18,967",
+      "small": "13,706",
+      "mid": "21,184",
+      "large": "19,765",
+      "yoy": "+22.8",
+      "y3": "91.1",
+      "y5": "138.3"
+    },
+    "mumbai": {
+      "median": "29,407",
+      "yoy": "n/a"
+    },
+    "bengaluru": {
+      "median": "12,301"
+    },
+    "dehradun": {
+      "median": "8,161"
+    }
+  },
+  "posts": [
+    {
+      "id": "d01-gurgaon-size-bands",
+      "day": 1,
+      "date": "2026-08-25",
+      "time": "20:30",
+      "pillar": "The Myth",
+      "format": "card",
+      "status": "PUBLISHED",
+      "permalink": "https://www.instagram.com/p/DcYlBtfkkL9/",
+      "slides": [
+        {
+          "template": "rows",
+          "eyebrow": "Gurgaon · rate by size band",
+          "headline": "The middle of the market is the most expensive floor in it.",
+          "lede": "In Gurgaon, a 60-110 sqm flat costs more per square foot than one above 110 sqm. Size does not buy a discount here. The mid band does.",
+          "rows": [
+            [
+              "Under 60 sqm",
+              "₹13,706",
+              false
+            ],
+            [
+              "60-110 sqm",
+              "₹21,184",
+              true
+            ],
+            [
+              "Over 110 sqm",
+              "₹19,765",
+              false
+            ]
+          ],
+          "source": "NHB RESIDEX · ₹/sqft · as of 2026-03-31"
+        }
+      ]
+    },
+    {
+      "id": "d02-method-dated",
+      "day": 2,
+      "date": "2026-08-26",
+      "time": "20:30",
+      "pillar": "Method",
+      "format": "card",
+      "slides": [
+        {
+          "template": "statement",
+          "eyebrow": "How we publish",
+          "headline": "Every figure we publish carries its source and its date.",
+          "lede": "Not because it looks rigorous. Because a property number without a date is a rumour, and most of the numbers you will be quoted this year are rumours.",
+          "kicker": "Where a figure does not exist yet, we mark it as a gap rather than estimate it.",
+          "source": "Groundwork · method"
+        }
+      ]
+    },
+    {
+      "id": "d03-carpet-builtup",
+      "day": 3,
+      "date": "2026-08-27",
+      "time": "20:30",
+      "pillar": "How To Read It",
+      "format": "carousel",
+      "slides": [
+        {
+          "template": "statement",
+          "eyebrow": "Property literacy · 01",
+          "headline": "Carpet, built-up, super built-up. What you are actually paying for.",
+          "lede": "Three numbers describe the same flat. Only one of them is floor you can stand on.",
+          "kicker": "Swipe.",
+          "source": "Groundwork · explainer"
+        },
+        {
+          "template": "define",
+          "eyebrow": "Carpet area",
+          "term": "Carpet",
+          "definition": "The usable floor inside your walls. What a carpet would cover. This is the number RERA requires a builder to disclose.",
+          "note": "The only one that describes your actual home.",
+          "source": "RERA Act 2016, Section 2(k)"
+        },
+        {
+          "template": "define",
+          "eyebrow": "Built-up area",
+          "term": "Built-up",
+          "definition": "Carpet, plus the thickness of your walls, plus balconies. Typically 10 to 15 percent above carpet.",
+          "note": "Still yours. Just not floor you can use.",
+          "source": "Groundwork · explainer"
+        },
+        {
+          "template": "define",
+          "eyebrow": "Super built-up",
+          "term": "Super built-up",
+          "definition": "Built-up, plus your share of lobbies, lifts, corridors, clubhouse and stairs. Often 25 to 40 percent above carpet.",
+          "note": "The number most price-per-sqft quotes are based on.",
+          "source": "Groundwork · explainer"
+        },
+        {
+          "template": "statement",
+          "eyebrow": "Why it matters",
+          "headline": "A 30 percent loading turns ₹15,000 per sqft into ₹19,500.",
+          "lede": "Same flat. Same money. Different denominator. When you compare two projects, check which area each price is quoted on before you compare anything else.",
+          "kicker": "Ask for the carpet-area price. Always.",
+          "source": "Groundwork · explainer"
+        }
+      ]
+    },
+    {
+      "id": "d04-gurgaon-median",
+      "day": 4,
+      "date": "2026-08-28",
+      "time": "07:45",
+      "pillar": "The Number",
+      "format": "card",
+      "slides": [
+        {
+          "template": "figure",
+          "eyebrow": "Gurgaon",
+          "figure": "₹18,967",
+          "unit": "per square foot, weighted average across size bands",
+          "lede": "The middle of the Gurgaon market, as measured by the National Housing Bank's residential index.",
+          "source": "NHB RESIDEX · as of 2026-03-31"
+        }
+      ]
+    },
+    {
+      "id": "d05-four-cities",
+      "day": 5,
+      "date": "2026-08-29",
+      "time": "20:30",
+      "pillar": "The Number",
+      "format": "carousel",
+      "slides": [
+        {
+          "template": "statement",
+          "eyebrow": "Four cities",
+          "headline": "Four cities, four different floors.",
+          "lede": "Every figure below is the weighted median rate per square foot, from the same source, on the same date. Comparable, which is rarer than it sounds.",
+          "kicker": "Swipe.",
+          "source": "NHB RESIDEX · as of 2026-03-31"
+        },
+        {
+          "template": "figure",
+          "eyebrow": "Mumbai",
+          "figure": "₹29,407",
+          "unit": "per square foot",
+          "lede": "The most expensive of the four, by a distance.",
+          "source": "NHB RESIDEX · as of 2026-03-31"
+        },
+        {
+          "template": "figure",
+          "eyebrow": "Gurgaon",
+          "figure": "₹18,967",
+          "unit": "per square foot",
+          "lede": "Roughly two thirds of Mumbai.",
+          "source": "NHB RESIDEX · as of 2026-03-31"
+        },
+        {
+          "template": "figure",
+          "eyebrow": "Bengaluru",
+          "figure": "₹12,301",
+          "unit": "per square foot",
+          "lede": "Less than half of Mumbai, on comparable measurement.",
+          "source": "NHB RESIDEX · as of 2026-03-31"
+        },
+        {
+          "template": "figure",
+          "eyebrow": "Dehradun",
+          "figure": "₹8,161",
+          "unit": "per square foot",
+          "lede": "The cheapest we cover, and the least covered by anyone else.",
+          "source": "NHB RESIDEX · as of 2026-03-31"
+        }
+      ]
+    },
+    {
+      "id": "d06-one-crore-reel",
+      "day": 6,
+      "date": "2026-08-30",
+      "time": "20:30",
+      "pillar": "The Number",
+      "format": "reel",
+      "reel": {
+        "aspect": "9:16",
+        "size": "1080x1920",
+        "duration_s": 12,
+        "fps": 30,
+        "concept": "Four cities counting down. '₹1 crore buys you' holds, then each city's square footage counts up from 0 and settles, one per beat, Dehradun largest to Mumbai smallest. Ends on the sourced badge.",
+        "frames": [
+          "hold-title",
+          "dehradun-1225",
+          "bengaluru-813",
+          "gurgaon-527",
+          "mumbai-340",
+          "hold-source"
+        ],
+        "audio": "none",
+        "source": "Derived from NHB RESIDEX, as of 2026-03-31"
+      },
+      "slides": []
+    },
+    {
+      "id": "d08-circle-rate",
+      "day": 7,
+      "date": "2026-09-01",
+      "time": "20:30",
+      "pillar": "How To Read It",
+      "format": "carousel",
+      "slides": [
+        {
+          "template": "statement",
+          "eyebrow": "Property literacy · 02",
+          "headline": "Circle rate is not market rate. The gap is the story.",
+          "lede": "One is set by the state. One is what people actually pay. Knowing both tells you things neither tells you alone.",
+          "kicker": "Swipe.",
+          "source": "Groundwork · explainer"
+        },
+        {
+          "template": "define",
+          "eyebrow": "Circle rate",
+          "term": "Circle rate",
+          "definition": "The minimum value a state will register a property at. Also called collector rate or ready reckoner rate. It sets your stamp duty floor.",
+          "note": "Set by government. Revised occasionally, often lagging.",
+          "source": "Groundwork · explainer"
+        },
+        {
+          "template": "define",
+          "eyebrow": "Market rate",
+          "term": "Market rate",
+          "definition": "What a buyer and seller actually agree. Can sit well above the circle rate, and in a weak market can sit close to it.",
+          "note": "Set by people. Revised constantly.",
+          "source": "Groundwork · explainer"
+        },
+        {
+          "template": "statement",
+          "eyebrow": "What the gap tells you",
+          "headline": "A narrow gap is a cold market. A wide one is a hot market, or a stale circle rate.",
+          "lede": "You cannot read it in isolation, which is exactly why a single number from a listing site tells you almost nothing about where a market actually is.",
+          "kicker": "Two numbers, or no conclusion.",
+          "source": "Groundwork · explainer"
+        }
+      ]
+    },
+    {
+      "id": "d09-index-not-your-flat",
+      "day": 8,
+      "date": "2026-09-02",
+      "time": "20:30",
+      "pillar": "The Myth",
+      "format": "card",
+      "slides": [
+        {
+          "template": "statement",
+          "eyebrow": "Gurgaon · reading an index",
+          "headline": "Gurgaon rose 22.8 percent in a year. Your flat did not necessarily.",
+          "lede": "A city index is a basket. It moves with the mix of what transacted, the size bands that sold, and the areas that were active. Your address is not the basket.",
+          "kicker": "An index tells you about a market. Only a valuation tells you about a property.",
+          "source": "NHB RESIDEX press release · as of 2025-12-31"
+        }
+      ]
+    },
+    {
+      "id": "d12-three-numbers",
+      "day": 9,
+      "date": "2026-09-05",
+      "time": "20:30",
+      "pillar": "How To Read It",
+      "format": "carousel",
+      "slides": [
+        {
+          "template": "statement",
+          "eyebrow": "Before you buy",
+          "headline": "Three numbers that should decide where you buy.",
+          "lede": "Not the brochure render. Not the sample flat. These three, in this order.",
+          "kicker": "Swipe.",
+          "source": "Groundwork · explainer"
+        },
+        {
+          "template": "define",
+          "eyebrow": "One",
+          "term": "Price per carpet sqft",
+          "definition": "Not super built-up. Insist on the carpet number, then compare across projects on that basis alone.",
+          "note": "Everything else is a different denominator.",
+          "source": "Groundwork · explainer"
+        },
+        {
+          "template": "define",
+          "eyebrow": "Two",
+          "term": "The circle rate gap",
+          "definition": "How far above the state's own floor is this price. A number far above a recently revised circle rate deserves a question.",
+          "note": "Both numbers are public.",
+          "source": "Groundwork · explainer"
+        },
+        {
+          "template": "define",
+          "eyebrow": "Three",
+          "term": "Booked against built",
+          "definition": "From the RERA filing. Is the money coming in faster than the building is going up.",
+          "note": "The one a broker will not volunteer.",
+          "source": "RERA quarterly filings"
+        }
+      ]
+    },
+    {
+      "id": "d24-no-listings",
+      "day": 10,
+      "date": "2026-09-17",
+      "time": "20:30",
+      "pillar": "Method",
+      "format": "carousel",
+      "slides": [
+        {
+          "template": "statement",
+          "eyebrow": "Why we do not quote listings",
+          "headline": "A listing price is what someone hopes to get.",
+          "lede": "A registered price is what someone actually got. We build on the second, and it costs us a great deal of convenience to do so.",
+          "kicker": "Swipe.",
+          "source": "Groundwork · method"
+        },
+        {
+          "template": "define",
+          "eyebrow": "The easy path",
+          "term": "Portal listings",
+          "definition": "Abundant, current, free, and available by the million. Also asking prices, posted by the seller's side, with no obligation to reflect any completed transaction.",
+          "note": "We do not use them.",
+          "source": "Groundwork · method"
+        },
+        {
+          "template": "define",
+          "eyebrow": "The slow path",
+          "term": "Statutory records",
+          "definition": "Registration departments, RERA filings, the National Housing Bank index. Slower, patchier, sometimes behind a captcha or a scanned PDF.",
+          "note": "But checkable by you, not just by us.",
+          "source": "Groundwork · method"
+        },
+        {
+          "template": "statement",
+          "eyebrow": "The trade",
+          "headline": "We would rather publish four cities we can defend than forty we cannot.",
+          "lede": "That is why our coverage looks small. It is also why every figure on it carries a date and a source you can go and read for yourself.",
+          "kicker": "",
+          "source": "Groundwork · method"
+        }
+      ]
+    }
+  ]
+}
