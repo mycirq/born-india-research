@@ -18,6 +18,12 @@ const unmerc = (m) => (Math.atan(Math.exp(m)) - Math.PI / 4) * (360 / Math.PI);
    actually feels like. */
 const project = (v, decel = 0.998) => (v / 1000) * decel / (1 - decel);
 
+/* The projection multiplier is ~499x, so an unbounded velocity throws the map
+   thousands of pixels off the world. Real flicks are well under this; the caps
+   only catch the pathological ones (a stuttered sample, a synthetic event). */
+const MAX_V = 2600;        // px/s
+const clampV = (v) => Math.max(-MAX_V, Math.min(MAX_V, v || 0));
+
 const REDUCED = () =>
   typeof window !== 'undefined' &&
   window.matchMedia &&
@@ -230,7 +236,13 @@ export default function CityMap({ city, pins, selected, onSelect }) {
 
   const glide = useCallback((vx, vy) => {
     const d = dragRef.current;
-    const tx = d.x + project(vx), ty = d.y + project(vy);
+    const el = mapRef.current;
+    // Never throw further than a bit over one screen: past that the reader has
+    // lost the place they were looking at, which is not what a flick means.
+    const lim = el ? Math.max(el.clientWidth, el.clientHeight) * 1.25 : 900;
+    const cap = (p) => Math.max(-lim, Math.min(lim, p));
+    const tx = d.x + cap(project(clampV(vx)));
+    const ty = d.y + cap(project(clampV(vy)));
     if (REDUCED()) { commit(tx, ty); return; }
     const w0 = 2 * Math.PI / RESPONSE;
     let x = d.x, y = d.y, dx = vx, dy = vy, last = performance.now();
@@ -280,10 +292,14 @@ export default function CityMap({ city, pins, selected, onSelect }) {
     d.id = null;
     try { e.currentTarget.releasePointerCapture(e.pointerId); } catch {}
     if (!d.moved) return;
-    // Release velocity from the recent samples, handed to the spring so there
-    // is no seam between dragging and animating.
-    const h = d.hist, a = h[0], b = h[h.length - 1];
-    const dt = Math.max(1, b.t - a.t);
+    // Release velocity from the last ~120ms only. Older samples would average
+    // a pause before release into the throw, so lifting off a stationary
+    // finger would still fling the map.
+    const now = performance.now();
+    const h = d.hist.filter((p) => now - p.t < 120);
+    if (h.length < 2) { commit(d.x, d.y); return; }
+    const a = h[0], b = h[h.length - 1];
+    const dt = Math.max(8, b.t - a.t);
     glide(((b.x - a.x) / dt) * 1000, ((b.y - a.y) / dt) * 1000);
   };
 
