@@ -43,7 +43,7 @@ export default function Brief() {
       <header style={{ borderBottom: '1px solid var(--line)' }}>
         <div className="wrap" style={{ height: 76, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
           <a href="/" style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 20, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-heading)' }}>Groundwork</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: 20, letterSpacing: 'var(--tracking-ui)', color: 'var(--text-heading)' }}>Groundwork</span>
             <span style={{ ...label, color: 'var(--text-faint)' }}>by Born India Research</span>
           </a>
           <a className="btn btn-secondary btn-sm" href="/">← Back to site</a>
@@ -56,7 +56,7 @@ export default function Brief() {
           <span style={{ ...label, color: 'var(--laterite-500)' }}>Investment brief · Sample</span>
           <span style={{ ...label, color: 'var(--text-faint)' }}>Ref BIR-2026-0007 · Jun 2026</span>
         </div>
-        <h1 style={{ font: 'var(--type-display-2)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-tight)', margin: '18px 0 12px', textWrap: 'pretty' }}>
+        <h1 style={{ font: 'var(--type-display-2)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-display-2)', margin: '18px 0 12px', textWrap: 'pretty' }}>
           4BHK, Golf Course Extension Road, Gurgaon
         </h1>
         <p style={{ font: 'var(--type-lead)', color: 'var(--text-muted)', maxWidth: 'var(--measure-prose)' }}>

@@ -27,8 +27,21 @@ export default function GroundworkGlobe({ selected, level, onPick, onLevel }) {
     rot: START.slice(), zoom: 0, target: 0, cityZoom: 0, cityTarget: 0,
     t0: null, hover: null, raf: 0, size: 0, baseScale: 0,
     offscreen: false, base: null, baseKey: '', lastFrame: 0, settled: false,
-    ro: null, io: null, mounted: false,
+    ro: null, io: null, mounted: false, reduced: false,
   }).current;
+
+  // A large object that spins and drills on its own is exactly the motion a
+  // reader with a vestibular sensitivity has asked us not to play. Honour the
+  // preference by starting settled: the globe is still there, still
+  // interactive, it just does not perform on arrival.
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const apply = () => { s.reduced = mq.matches; };
+    apply();
+    mq.addEventListener?.('change', apply);
+    return () => mq.removeEventListener?.('change', apply);
+  }, [s]);
 
   // Mirror props into refs so the rAF loop never reads stale values.
   const levelRef = useRef(level);
@@ -297,18 +310,28 @@ export default function GroundworkGlobe({ selected, level, onPick, onLevel }) {
         if (!s.mounted) return;
         s.raf = requestAnimationFrame(tick);
 
-        // Cap at ~30fps. State still advances while the globe is off screen (so
-        // it is settled by the time you scroll to it) but nothing is painted.
-        if (now - (s.lastFrame || 0) < 33) return;
+        // Smoothness is about how far things move between frames, not the
+        // frame count: at 30fps a fast zoom doubles the per-frame jump and
+        // reads as strobing. The offscreen base cache and the hi-res gate are
+        // what actually cost time, and both are handled above, so paint at
+        // display rate. State still advances while off screen (so it is
+        // settled by the time you scroll to it) but nothing is painted.
+        const FRAME_MS = 16;
+        const dt = (now - (s.lastFrame || now)) / 1000;
+        if (now - (s.lastFrame || 0) < FRAME_MS) return;
         s.lastFrame = now;
 
         if (s.t0 === null) s.t0 = now;
         const el = (now - s.t0) / 1000;
-        const intro = Math.min(1, el / 1.8);
+        const intro = s.reduced ? 1 : Math.min(1, el / 1.8);
         const e = easeOutCubic(intro);
 
-        s.zoom += (s.target - s.zoom) * 0.055;
-        s.cityZoom += (s.cityTarget - s.cityZoom) * 0.06;
+        // Frame-rate independent: a fixed fraction per *frame* means the globe
+        // travels at a different speed on a 120Hz display than on a 60Hz one.
+        const k = (rate) =>
+          s.reduced ? 1 : 1 - Math.pow(1 - rate, Math.max(0.2, Math.min(4, dt * 60)));
+        s.zoom += (s.target - s.zoom) * k(0.055);
+        s.cityZoom += (s.cityTarget - s.cityZoom) * k(0.06);
         // Snap the tail of the easing so "settled" is reached instead of
         // asymptotically approached, which would keep us on the slow path.
         if (Math.abs(s.target - s.zoom) < 0.002) s.zoom = s.target;

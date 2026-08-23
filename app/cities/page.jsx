@@ -19,7 +19,7 @@ export default function CitiesIndex() {
       <header style={{ borderBottom: '1px solid var(--line)' }}>
         <div className="wrap" style={{ height: 76, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
           <a href="/" style={{ display: 'flex', flexDirection: 'column', gap: 2, textDecoration: 'none' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 19, letterSpacing: 'var(--tracking-tight)', color: 'var(--text-heading)' }}>Groundwork</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: 19, letterSpacing: 'var(--tracking-ui)', color: 'var(--text-heading)' }}>Groundwork</span>
             <span style={{ ...label, color: 'var(--text-muted)' }}>By Born India Research</span>
           </a>
           <a className="btn btn-secondary btn-sm" href="/">← Back to site</a>
@@ -33,7 +33,7 @@ export default function CitiesIndex() {
           <span className="rule" />
         </div>
 
-        <h1 style={{ font: 'var(--type-display-2)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-tight)', marginTop: 'var(--space-5)', textWrap: 'pretty' }}>
+        <h1 style={{ font: 'var(--type-display-2)', color: 'var(--text-heading)', letterSpacing: 'var(--tracking-display-2)', marginTop: 'var(--space-5)', textWrap: 'pretty' }}>
           Four cities. We add one only once we can walk it properly.
         </h1>
 
