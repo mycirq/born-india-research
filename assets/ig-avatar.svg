@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <!-- Groundwork avatar for Instagram.
+       IG circle-crops and renders this at ~40-150px, so the mark is sized to
+       fill ~82% of the frame rather than sitting in the generous paper padding
+       of assets/logo-mark.png, which would read as a small dot at display size.
+       Paper ground, laterite globe, paper graticule, paper locator dot. -->
+  <rect width="1080" height="1080" fill="#f7f4ec"/>
+
+  <defs>
+    <clipPath id="globe">
+      <circle cx="540" cy="540" r="442"/>
+    </clipPath>
+  </defs>
+
+  <!-- globe body -->
+  <circle cx="540" cy="540" r="442" fill="#a8461d"/>
+
+  <!-- graticule: three latitudes + one meridian, clipped to the sphere -->
+  <g clip-path="url(#globe)" stroke="#f7f4ec" fill="none"
+     stroke-width="17" opacity="0.62" stroke-linecap="round">
+    <line x1="98" y1="369" x2="982" y2="369"/>
+    <line x1="98" y1="540" x2="982" y2="540"/>
+    <line x1="98" y1="711" x2="982" y2="711"/>
+    <ellipse cx="540" cy="540" rx="178" ry="442"/>
+  </g>
+
+  <!-- the locator: the one place the research is actually about -->
+  <circle cx="675" cy="426" r="66" fill="#f7f4ec"/>
+</svg>
