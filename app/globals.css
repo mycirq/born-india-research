@@ -4,11 +4,18 @@
 
 :root{
   --paper:#f7f4ec;--paper-sunk:#f0ece0;--surface:#fffdf8;--surface-ink:#15130e;
-  --ink-900:#15130e;--ink-700:#3a362c;--ink-500:#6b6455;--ink-300:#9c9484;--ink-100:#cfc8b8;
+  /* ink-300 is the `--text-faint` token and every one of its usages is 11-13px
+     label or caption text — including the "sourced / as_of" provenance lines.
+     At #9c9484 it measured 2.74:1 on paper, so the one element carrying the
+     "every figure sourced and dated" promise was the least readable thing on
+     the page. Darkened to clear 4.5:1 at small sizes. */
+  --ink-900:#15130e;--ink-700:#3a362c;--ink-500:#6b6455;--ink-300:#736b5c;--ink-100:#cfc8b8;
   --line:#e6e0d2;--line-strong:#d6cfbe;
   --laterite-700:#7f3413;--laterite-600:#8c3915;--laterite-500:#a8461d;--laterite-200:#e6cbbc;--laterite-100:#f3e4db;
   --indigo-600:#222c4b;--indigo-500:#2c3a63;--indigo-200:#c3c8d8;--indigo-100:#e3e5ee;
-  --verified-500:#3e6047;--verified-100:#e2ebe3;--caution-500:#8a6516;--caution-100:#f3eada;--flag-500:#8c2f22;--flag-100:#f4e2df;
+  /* caution-500 sits on caution-100 as an 11px badge and measured 4.45:1 —
+     short of 4.5 by a hair. One shade darker clears it. */
+  --verified-500:#3e6047;--verified-100:#e2ebe3;--caution-500:#7d5a12;--caution-100:#f3eada;--flag-500:#8c2f22;--flag-100:#f4e2df;
   --text-heading:var(--ink-900);--text-body:var(--ink-700);--text-muted:var(--ink-500);--text-faint:var(--ink-300);
   --text-accent:var(--laterite-600);--text-link:var(--indigo-500);--text-on-dark:#f2eee3;--text-on-dark-muted:#a49b89;
   --surface-page:var(--paper);--surface-card:var(--surface);--surface-sunk:var(--paper-sunk);--surface-accent:var(--laterite-100);--surface-inverse:var(--surface-ink);
@@ -61,7 +68,32 @@ h1,h2,h3{margin:0;font-weight:400;font-optical-sizing:auto}
 p{margin:0}
 a{color:var(--text-link);text-decoration:none}
 em{font-style:italic}
+
+/* Browser surfaces themed from the palette rather than left at OS defaults. */
 ::selection{background:var(--laterite-100)}
+html{scrollbar-color:var(--line-strong) var(--paper-sunk);caret-color:var(--laterite-500);accent-color:var(--laterite-500)}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--paper-sunk)}
+::-webkit-scrollbar-thumb{background:var(--line-strong);border:3px solid var(--paper-sunk);border-radius:var(--radius-1)}
+::-webkit-scrollbar-thumb:hover{background:var(--ink-500)}
+
+/* Keyboard focus. Both --border-focus and --shadow-focus were defined and
+   never used anywhere, so keyboard users had only the browser default — and
+   with `a{text-decoration:none}` above, links had effectively no focus
+   affordance at all. WCAG 2.4.7. */
+:where(a,button,[role="button"],input,select,textarea,summary,[tabindex]:not([tabindex="-1"])):focus-visible{
+  outline:2px solid var(--border-focus);
+  outline-offset:2px;
+  border-radius:var(--radius-1);
+}
+/* Inside the map's overflow:hidden frame an offset outline can clip, so the
+   pins take the soft ring token instead. */
+.map-pin:focus-visible,.map-ctrl:focus-visible{outline:none;box-shadow:var(--shadow-focus),0 0 0 2px var(--border-focus)}
+
+/* Disabled: dimmed, uninteractive, and never showing a press state. */
+:where(button,[role="button"],input,select,textarea):disabled,
+[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+:where(button,[role="button"]):disabled:active,[aria-disabled="true"]:active{transform:none}
 
 /* layout */
 .wrap{max-width:var(--page-max);margin:0 auto;padding:0 var(--gutter)}
