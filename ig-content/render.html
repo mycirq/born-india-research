@@ -107,15 +107,26 @@ function render(s, pager){
 (async () => {
   const data = await (await fetch("posts.json")).json();
   const cards = [];
+  window.__allIds = [];
   for (const p of data.posts){
     p.slides.forEach((s, i) => {
       s._id = p.slides.length > 1 ? `${p.id}-${String(i+1).padStart(2,"0")}` : p.id;
+      window.__allIds.push(s._id);
       cards.push(render(s, p.slides.length > 1 ? `${i+1}/${p.slides.length}` : ""));
     });
   }
-  // pad to a multiple of 3 so the last screenshot row is complete
-  while (cards.length % 2) cards.push('<div class="card" data-id="_pad"></div>');
-  document.getElementById("sheet").innerHTML = cards.join("");
+  const only = new URLSearchParams(location.search).get("only");
+  if (only) {
+    // isolate one card so headless Chrome can shoot it at exactly 540x675 CSS
+    const idx = window.__allIds.indexOf(only);
+    document.getElementById("sheet").innerHTML = idx >= 0 ? cards[idx] : "";
+    document.getElementById("sheet").style.width = "540px";
+    document.getElementById("sheet").style.gridTemplateColumns = "540px";
+    document.body.style.background = "#f7f4ec";
+  } else {
+    while (cards.length % 2) cards.push('<div class="card" data-id="_pad"></div>');
+    document.getElementById("sheet").innerHTML = cards.join("");
+  }
   await document.fonts.ready;
   window.__ready = true;
   window.__ids = [...document.querySelectorAll(".card")].map(c => c.dataset.id);

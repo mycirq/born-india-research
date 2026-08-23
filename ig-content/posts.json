@@ -200,34 +200,8 @@
       ]
     },
     {
-      "id": "d06-one-crore-reel",
-      "day": 6,
-      "date": "2026-08-30",
-      "time": "20:30",
-      "pillar": "The Number",
-      "format": "reel",
-      "reel": {
-        "aspect": "9:16",
-        "size": "1080x1920",
-        "duration_s": 12,
-        "fps": 30,
-        "concept": "Four cities counting down. '₹1 crore buys you' holds, then each city's square footage counts up from 0 and settles, one per beat, Dehradun largest to Mumbai smallest. Ends on the sourced badge.",
-        "frames": [
-          "hold-title",
-          "dehradun-1225",
-          "bengaluru-813",
-          "gurgaon-527",
-          "mumbai-340",
-          "hold-source"
-        ],
-        "audio": "none",
-        "source": "Derived from NHB RESIDEX, as of 2026-03-31"
-      },
-      "slides": []
-    },
-    {
       "id": "d08-circle-rate",
-      "day": 7,
+      "day": 6,
       "date": "2026-09-01",
       "time": "20:30",
       "pillar": "How To Read It",
@@ -269,7 +243,7 @@
     },
     {
       "id": "d09-index-not-your-flat",
-      "day": 8,
+      "day": 7,
       "date": "2026-09-02",
       "time": "20:30",
       "pillar": "The Myth",
@@ -287,7 +261,7 @@
     },
     {
       "id": "d12-three-numbers",
-      "day": 9,
+      "day": 8,
       "date": "2026-09-05",
       "time": "20:30",
       "pillar": "How To Read It",
@@ -329,7 +303,7 @@
     },
     {
       "id": "d24-no-listings",
-      "day": 10,
+      "day": 9,
       "date": "2026-09-17",
       "time": "20:30",
       "pillar": "Method",
