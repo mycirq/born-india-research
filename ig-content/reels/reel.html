@@ -1,0 +1,176 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>One Number</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Public+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f4ec; --ink-900:#15130e; --ink-700:#3a362c; --ink-500:#6b6455;
+    --ink-300:#736b5c; --line:#e6e0d2; --line-strong:#d6cfbe;
+    --lat:#a8461d; --lat-600:#8c3915; --lat-100:#f3e4db;
+    --good:#3e6047; --good-100:#e2ebe3;
+    --display:"Newsreader",Georgia,serif; --sans:"Public Sans",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{background:var(--paper)}
+  /* 540x960 CSS captured at deviceScaleFactor 2 = 1080x1920 exactly. */
+  #stage{width:540px;height:960px;position:relative;overflow:hidden;
+    background:var(--paper);color:var(--ink-700);font-family:var(--sans);
+    font-optical-sizing:auto;padding:64px 46px 54px;display:flex;flex-direction:column}
+
+  .eyebrow{font:500 9.5px/1.2 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+    color:var(--lat-600);display:flex;align-items:center;gap:10px}
+  .eyebrow .rule{flex:1;border-top:1px solid var(--line-strong)}
+
+  /* every beat is absolutely placed in the body area and driven by seek(t) */
+  .body{position:relative;flex:1;margin-top:34px}
+  .beat{position:absolute;inset:0;opacity:0;will-change:opacity,transform}
+
+  .hook{font:400 46px/1.14 var(--display);letter-spacing:-.026em;color:var(--ink-900);
+    text-wrap:pretty}
+  .sig{font:400 62px/1.05 var(--display);letter-spacing:-.028em;color:var(--ink-900)}
+  .sig .dot{color:var(--lat)}
+
+  .figwrap{position:absolute;left:0;right:0;top:96px}
+  .fig{font:400 96px/1 var(--mono);letter-spacing:-.03em;color:var(--ink-900);
+    font-variant-numeric:tabular-nums}
+  .figunit{font:500 10.5px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-500);margin-top:20px;max-width:26ch}
+  .figlabel{font:500 9.5px/1.2 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+    color:var(--lat-600);margin-bottom:16px}
+
+  .mean{font:400 30px/1.4 var(--display);letter-spacing:-.018em;color:var(--ink-900);
+    text-wrap:pretty}
+
+  .signoff{font:400 34px/1.32 var(--display);letter-spacing:-.02em;color:var(--ink-900)}
+  .signoff em{font-style:italic;color:var(--lat)}
+
+  /* source line is pinned and visible through the whole figure beat */
+  .src{position:absolute;left:0;right:0;bottom:0;
+    font:400 9.5px/1.4 var(--mono);letter-spacing:.06em;color:var(--ink-300);
+    text-transform:uppercase;display:flex;align-items:center;gap:10px;opacity:0}
+  .badge{font:500 8.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;
+    color:var(--good);background:var(--good-100);padding:6px 9px;border-radius:2px;
+    white-space:nowrap;margin-left:auto}
+
+  .foot{display:flex;align-items:center;gap:10px;padding-top:20px;
+    border-top:1px solid var(--line)}
+  .foot span{font:500 11px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-900)}
+  /* a thin progress rule so the viewer feels the 30s shape */
+  .prog{position:absolute;left:0;bottom:0;height:3px;background:var(--lat);width:0}
+</style></head>
+<body>
+<div id="stage">
+  <div class="eyebrow"><span id="eb">Groundwork</span><span class="rule"></span></div>
+
+  <div class="body">
+    <div class="beat" id="b1"><div class="hook" id="hook"></div></div>
+    <div class="beat" id="b2"><div class="sig">One number<span class="dot">.</span></div></div>
+    <div class="beat" id="b3">
+      <div class="figwrap">
+        <div class="figlabel" id="figlabel"></div>
+        <div class="fig" id="fig"></div>
+        <div class="figunit" id="figunit"></div>
+      </div>
+    </div>
+    <div class="beat" id="b4"><div class="mean" id="mean"></div></div>
+    <div class="beat" id="b5">
+      <div class="signoff">Sourced and dated.<br><em>Gaps marked as gaps.</em></div>
+    </div>
+    <div class="src" id="src"><span id="srctext"></span><span class="badge">Sourced</span></div>
+  </div>
+
+  <div class="foot">
+    <svg width="18" height="18" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="31" fill="#a8461d"/>
+      <g stroke="#f7f4ec" fill="none" stroke-width="1.4" opacity=".62">
+        <ellipse cx="32" cy="32" rx="12.5" ry="31"/><line x1="1" y1="32" x2="63" y2="32"/>
+      </g>
+      <circle cx="41.5" cy="24" r="4.6" fill="#f7f4ec"/>
+    </svg><span>Groundwork</span>
+  </div>
+  <div class="prog" id="prog"></div>
+</div>
+
+<script>
+// ---- the One Number format, as timing constants -------------------------
+// Five beats. Changing these changes every reel, which is the point: the
+// format is meant to be identical so the account is recognisable in 2s.
+const BEATS = {
+  hook:    [0.0,  2.5],
+  sig:     [2.5,  5.0],
+  figure:  [5.0, 18.0],
+  meaning:[18.0, 26.0],
+  signoff:[26.0, 30.0],
+};
+const DUR = 30.0;
+
+const clamp = (v,a,b)=>Math.min(b,Math.max(a,v));
+// ease-out cubic: fast entry, gentle settle. Matches the card system's ease.
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+const easeInOut = t => t<0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+
+/** Opacity+lift for a beat, with a short cross-fade at each edge. */
+function beatState(t, [start, end], fade = 0.45){
+  if (t < start - fade || t > end + fade) return {o:0, y:14};
+  if (t < start)      { const p = easeOut((t-(start-fade))/fade); return {o:p, y:14*(1-p)}; }
+  if (t > end - fade) { const p = clamp((t-(end-fade))/fade,0,1); return {o:1-p, y:-8*p}; }
+  return {o:1, y:0};
+}
+
+function apply(el, s){
+  el.style.opacity = s.o.toFixed(3);
+  el.style.transform = `translateY(${s.y.toFixed(2)}px)`;
+}
+
+let DATA = null;
+
+/** Deterministic: the same t always renders the same frame. */
+function seek(t){
+  if (!DATA) return;
+  t = clamp(t, 0, DUR);
+
+  apply(document.getElementById('b1'), beatState(t, BEATS.hook));
+  apply(document.getElementById('b2'), beatState(t, BEATS.sig));
+  apply(document.getElementById('b4'), beatState(t, BEATS.meaning));
+  apply(document.getElementById('b5'), beatState(t, BEATS.signoff));
+
+  // figure beat: count up over the first 2.2s, then hold
+  const fs = beatState(t, BEATS.figure);
+  apply(document.getElementById('b3'), fs);
+  const [fa] = BEATS.figure;
+  const p = clamp((t - fa) / 2.2, 0, 1);
+  const shown = DATA.figure_value == null
+      ? DATA.figure
+      : DATA.prefix + Math.round(DATA.figure_value * easeOut(p)).toLocaleString('en-IN') + DATA.suffix;
+  document.getElementById('fig').textContent = shown;
+
+  // source line rides with the figure beat, slightly delayed so the number lands first
+  const ss = beatState(t, [BEATS.figure[0] + 0.8, BEATS.figure[1]]);
+  document.getElementById('src').style.opacity = ss.o.toFixed(3);
+
+  document.getElementById('prog').style.width = (540 * (t / DUR)) + 'px';
+}
+
+(async () => {
+  const q = new URLSearchParams(location.search);
+  const id = q.get('id');
+  const all = await (await fetch('reels.json')).json();
+  DATA = all.find(r => r.id === id) || all[0];
+
+  document.getElementById('eb').textContent  = DATA.eyebrow;
+  document.getElementById('hook').textContent = DATA.hook;
+  document.getElementById('figlabel').textContent = DATA.figure_label || '';
+  document.getElementById('figunit').textContent  = DATA.unit;
+  document.getElementById('mean').textContent = DATA.meaning;
+  document.getElementById('srctext').textContent = DATA.source;
+
+  await document.fonts.ready;
+  seek(parseFloat(q.get('t') || '0'));
+  window.seek = seek;
+  window.__ready = true;   // the renderer waits on this
+})();
+</script>
+</body></html>

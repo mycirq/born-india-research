@@ -1,0 +1,93 @@
+[
+  {
+    "id": "r01-size-bands",
+    "eyebrow": "Gurgaon · rate by size band",
+    "hook": "A smaller flat in Gurgaon costs more per square foot than a bigger one.",
+    "figure_label": "60 to 110 sqm",
+    "figure_value": 21184,
+    "prefix": "₹",
+    "suffix": "",
+    "unit": "per square foot · the most expensive band in the city",
+    "meaning": "Size does not buy a discount here. The mid band is the most expensive floor in the market.",
+    "source": "NHB RESIDEX · as of 2026-03-31",
+    "caption_extra": "₹13,706 for under 60 sqm. ₹21,184 for 60 to 110 sqm. ₹19,765 for over 110 sqm."
+  },
+  {
+    "id": "r02-captcha",
+    "eyebrow": "Gurgaon · public records",
+    "hook": "Gurgaon's property records are public. Reaching them requires solving a captcha.",
+    "figure_label": "Non-captcha routes to Gurgaon's records",
+    "figure_value": 0,
+    "prefix": "",
+    "suffix": "",
+    "unit": "HARERA search, deed dashboard, collector rates, deed search",
+    "meaning": "Every statutory route into Haryana's own property data is gated. That is why Gurgaon is the hardest city we cover.",
+    "source": "Verified by Groundwork · 2026-08-23",
+    "caption_extra": "We checked all four. There is no non-captcha path."
+  },
+  {
+    "id": "r03-rental-yield",
+    "eyebrow": "India · rental yield",
+    "hook": "Nobody in India can honestly quote you a rental yield. Including us.",
+    "figure_label": "Public rental indices in India",
+    "figure_value": 0,
+    "prefix": "",
+    "suffix": "",
+    "unit": "the National Housing Bank announced one and never published it",
+    "meaning": "Four cities, four incompatible municipal bases, none of them market rent. So we mark it as a gap instead of estimating it.",
+    "source": "NHB RESIDEX scope statement · verified 2026-08-23",
+    "caption_extra": "An announced index is not a published one."
+  },
+  {
+    "id": "r04-air-gurgaon",
+    "eyebrow": "Gurgaon · air quality",
+    "hook": "Gurgaon costs a third less than Mumbai per square foot, and its air is four times worse.",
+    "figure_label": "Gurgaon PM2.5, city mean",
+    "figure_value": 103,
+    "prefix": "",
+    "suffix": "",
+    "unit": "micrograms per cubic metre · Mumbai reads 24",
+    "meaning": "India's own daily standard is 60. Nobody publishes price and air quality against each other, so we started.",
+    "source": "CPCB via data.gov.in · latest reading",
+    "caption_extra": "Mean across the city's monitoring stations. Latest reading, not a period average."
+  },
+  {
+    "id": "r05-index",
+    "eyebrow": "Gurgaon · reading an index",
+    "hook": "Gurgaon rose 22.8 percent in a year. Your flat did not necessarily.",
+    "figure_label": "Gurgaon city index, one year",
+    "figure_value": 22.8,
+    "prefix": "+",
+    "suffix": "%",
+    "unit": "city index · not a valuation of any single property",
+    "meaning": "An index is a basket. It moves with what transacted and where. Your address is not the basket.",
+    "source": "NHB RESIDEX press release · as of 2025-12-31",
+    "caption_extra": "An index tells you about a market. Only a valuation tells you about a property."
+  },
+  {
+    "id": "r06-circle-rate",
+    "eyebrow": "India · circle rate",
+    "hook": "Circle rate is not market rate. The gap between them is the story.",
+    "figure_label": "Numbers you need, not one",
+    "figure_value": 2,
+    "prefix": "",
+    "suffix": "",
+    "unit": "the state's floor, and what people actually paid",
+    "meaning": "A narrow gap is a cold market. A wide one is a hot market, or a circle rate nobody has revised.",
+    "source": "Groundwork · explainer",
+    "caption_extra": "One is set by the state. One is set by people. Neither is useful alone."
+  },
+  {
+    "id": "r07-listings",
+    "eyebrow": "Groundwork · method",
+    "hook": "We will not quote you a listing price. Here is why.",
+    "figure_label": "Cities we publish",
+    "figure_value": 4,
+    "prefix": "",
+    "suffix": "",
+    "unit": "every figure sourced from statutory records, never from a portal",
+    "meaning": "A listing price is what someone hopes to get. A registered price is what someone actually got. We build on the second.",
+    "source": "Groundwork · method",
+    "caption_extra": "It is why our coverage looks small. It is also why you can check every figure yourself."
+  }
+]

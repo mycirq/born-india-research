@@ -7,3 +7,5 @@
 _handoff/
 design-system/
 .claude/settings.local.json
+ig-content/reels/node_modules/
+ig-content/reels/package-lock.json
