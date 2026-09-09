@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08",
+  "generated_at": "2026-09-09",
   "cities": {
     "gurgaon": {
       "headline": {
@@ -139,14 +139,14 @@
           "as_of": "2026-06-30"
         },
         "yoy_change_pct": {
-          "display": "+4.5",
-          "value": 4.5,
+          "display": "+6.2",
+          "value": 6.2,
           "unit": "Percent, city index",
           "status": "sourced",
           "method": "official_index",
           "source": "NHB RESIDEX press release",
           "url": "https://residex.nhbonline.org.in/",
-          "as_of": "2026-03-31"
+          "as_of": "2026-06-30"
         },
         "projects_registered": {
           "display": "23,701",
@@ -317,14 +317,14 @@
           "as_of": "2026-06-30"
         },
         "yoy_change_pct": {
-          "display": "+13.1",
-          "value": 13.1,
+          "display": "+21.5",
+          "value": 21.5,
           "unit": "Percent, city index",
           "status": "sourced",
           "method": "official_index",
           "source": "NHB RESIDEX press release",
           "url": "https://residex.nhbonline.org.in/",
-          "as_of": "2026-03-31"
+          "as_of": "2026-06-30"
         },
         "change_3y_pct": {
           "display": "43.3",
